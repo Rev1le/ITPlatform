@@ -38,7 +38,8 @@ module default {
     }
 
     type Employer extending meta::Person {
-        link recruiter := .<employer[is Recruiter];
+        multi link vacancies -> Vacancy;
+        link mentor := .<employer[is Mentor];
     }
 
     type Vacancy extending meta::Created {
@@ -49,9 +50,11 @@ module default {
         property salary -> float32;
     }
 
-    type Recruiter extending meta::Created {
+    type Mentor extending meta::Created {
         required link employer -> Employer;
-        multi link vacancies -> Vacancy;
+        required property skills -> array<str>;
+        required property salary -> float32;
+        required property resume -> str;
     }
 
     type TaskQuestion extending meta::Task {

@@ -1,5 +1,6 @@
 select TaskBlock {
     name,
     difficulty,
-    description
+    description,
+    completed_count := count(.completed)
 }
