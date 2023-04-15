@@ -18,8 +18,7 @@ class Login(BaseModel):
     password: str
 
 
-@dataclasses.dataclass
-class LoginAccess:
+class LoginAccess(BaseModel):
     token: str
 
 
