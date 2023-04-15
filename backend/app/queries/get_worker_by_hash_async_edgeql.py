@@ -33,12 +33,14 @@ async def get_worker_by_hash(
     executor: edgedb.AsyncIOExecutor,
     *,
     hash: str,
+    email: str,
 ) -> GetWorkerByHashResult | None:
     return await executor.query_single(
         """\
         select Worker {id, name, photo, birthday, bio, hash, email}
-        filter Worker.hash = <str>$hash
+        filter .hash = <str>$hash and .email = <str>$email
         limit 1\
         """,
         hash=hash,
+        email=email,
     )

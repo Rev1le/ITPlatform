@@ -1,3 +1,3 @@
 select Employer {id, name, photo, birthday, bio, hash, email}
-filter Employer.hash = <str>$hash
+filter .hash = <str>$hash and .email = <str>$email
 limit 1
