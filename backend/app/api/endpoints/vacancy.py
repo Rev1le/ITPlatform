@@ -3,6 +3,7 @@ from fastapi import APIRouter
 from app.core.database import edgedb_client
 from app.queries.get_vacancies_async_edgeql import get_vacancies
 
+
 router = APIRouter()
 
 
