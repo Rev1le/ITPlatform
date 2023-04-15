@@ -4,6 +4,12 @@ import SignUpView from '../views/SignUpView.vue'
 
 const routes = [
   {
+    path: '/',
+    name: 'Auth',
+    component: AuthView,
+    meta: { transition: 'slide-left' },
+  },
+  {
     path: '/auth',
     name: 'Auth',
     component: AuthView,

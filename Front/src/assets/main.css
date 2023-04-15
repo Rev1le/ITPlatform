@@ -1,7 +1,10 @@
+@import url(//db.onlinewebfonts.com/c/c68e21ad1a10803b1ef491fd0392b067?family=SB+Sans+Text);
+
 *,html,body{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     --main-color: #5989e9;
     --color-bg:white;
+    font-family: "SB Sans Text", sans-serif;
 }
