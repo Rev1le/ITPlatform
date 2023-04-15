@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from app.core.database import edgedb_client
 from app.api.deps import AuthEmplayer
 from app.queries.get_mentors_async_edgeql import GetMentorsResult, get_mentors
-from app.queries.create_mentors_async_edgeql import CreateMentorsResult, create_mentor
+from app.queries.create_mentors_async_edgeql import CreateMentorsResult, create_mentor as db_create_mentor
 
 router = APIRouter()
 
@@ -26,7 +26,7 @@ async def create_mentor(
     mentor_data: MentorData
     ) -> CreateMentorsResult:
     
-    return await create_mentor(
+    return await db_create_mentor(
         edgedb_client, 
         user_id = employer.id,
         skills = mentor_data.skills,
