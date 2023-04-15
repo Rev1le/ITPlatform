@@ -38,6 +38,7 @@ import StackIcon from "@/components/StackIcon";
   padding-left: 59px;
   background: rgba(234, 239, 246, 0.22);
   border-radius: 10px;
+  margin-bottom: 30px;
 
 }
 .offer_title{

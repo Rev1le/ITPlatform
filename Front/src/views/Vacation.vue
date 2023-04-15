@@ -1,7 +1,8 @@
 <template>
- <div>
-   <vacantionOffer>
-   </vacantionOffer>
+ <div class="vacation_desk">
+   <vacantionOffer/>
+   <vacantion-offer/>
+   <vacantion-offer/>
  </div>
 </template>
 
