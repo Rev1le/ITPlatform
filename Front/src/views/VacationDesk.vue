@@ -10,10 +10,10 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import VacantionsList from "@/components/Vacations/VacantionsList.vue.js";
 
-import VacantionsList from "@/components/VacantionsList.vue";
+import VacantionsList from "@/components/Vacations/VacantionsList.vue";
+
+
 import NavBar from "@/App";
 import vacantionOffer from "@/components/Vacations/vacantionOffer";
 export default {
