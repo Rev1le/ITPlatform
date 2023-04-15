@@ -17,6 +17,7 @@ module meta {
         required property email -> str {
             constraint exclusive;
         }
+        multi link tokens := .<owner[is default::Token]
     }
 }
 
