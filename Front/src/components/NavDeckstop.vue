@@ -55,7 +55,8 @@ input[type="radio"]:checked + .btn {
 }
 
 .nav_img {
-  width: 200px;
+  width: 20%;
+  min-width: 220px;
 }
 
 .navbar_btns {
