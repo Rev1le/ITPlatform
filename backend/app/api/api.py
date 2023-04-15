@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.api.endpoints import auth, registration, vacancy, update_user_data
+from app.api.endpoints import auth, registration, update_user_data, vacancy
 
 api_router = APIRouter()
 api_router.include_router(registration.router, prefix="/registration")
