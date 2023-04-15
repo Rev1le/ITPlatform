@@ -9,3 +9,4 @@ select TaskBlock {
         question
     }
 }
+filter .id = <uuid>$task_block_id
