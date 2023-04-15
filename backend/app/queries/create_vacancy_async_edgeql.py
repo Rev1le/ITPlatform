@@ -28,25 +28,35 @@ class CreateVacancyResult(NoPydanticValidation):
 async def create_vacancy(
     executor: edgedb.AsyncIOExecutor,
     *,
+    employer_id: uuid.UUID,
     name: str,
     about: str,
     skills: list[str],
     company: str,
     salary: float | None,
+    required_task_block_ids: list[uuid.UUID],
 ) -> CreateVacancyResult:
     return await executor.query_single(
         """\
         insert Vacancy {
+            author := (select Employer filter .id = <uuid>$employer_id),
             name := <str>$name,
             about := <str>$about,
             skills := <array<str>>$skills,
             company := <str>$company,
-            salary := <optional float32>$salary
+            salary := <optional float32>$salary,
+            required_task_blocks := distinct (for x in array_unpack(<array<uuid>>$required_task_block_ids) union (
+               select TaskBlock
+               filter .id = <uuid>x
+               limit 1
+            ))
         }\
         """,
+        employer_id=employer_id,
         name=name,
         about=about,
         skills=skills,
         company=company,
         salary=salary,
+        required_task_block_ids=required_task_block_ids,
     )

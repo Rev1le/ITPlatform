@@ -11,9 +11,9 @@ from app.queries.get_task_block_challenges_async_edgeql import (
     GetTaskBlockChallengesResult,
     get_task_block_challenges,
 )
-from app.queries.get_task_blocks_preview_async_edgeql import (
-    GetTaskBlocksPreviewResult,
-    get_task_blocks_preview,
+from app.queries.get_task_blocks_async_edgeql import (
+    GetTaskBlocksResult,
+    get_task_blocks,
 )
 from app.queries.get_worker_by_token_async_edgeql import GetWorkerByTokenResult
 
@@ -38,8 +38,10 @@ router = APIRouter()
 
 
 @router.get("/all")
-async def all_tasks_blocks() -> list[GetTaskBlocksPreviewResult]:
-    return await get_task_blocks_preview(edgedb_client)
+async def all_tasks_blocks(
+    worker: Annotated[GetWorkerByTokenResult, Depends(check_auth_worker_token)]
+) -> list[GetTaskBlocksResult]:
+    return await get_task_blocks(edgedb_client, user_id=worker.id)
 
 
 @router.get("/{id}")
