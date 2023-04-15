@@ -83,5 +83,7 @@ export default {
   opacity: 0;
   transform: translateX(-20%);
 }
-
+vac-move {
+  transition: transform 0.4s;
+}
 </style>
