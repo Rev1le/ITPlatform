@@ -1,25 +1,10 @@
 <template>
   <div data-tauri-drag-region class="Navbar-vue">
-    <img class="nav_img" src="@/assets/logo.png" alt="" />
+    <img class="nav_img" src="@/assets/sbertest.svg" alt="" />
 
     <div v-if="width > 600" class="navbar_btns">
-<!--      <input id="split" name="nav" type="radio" value="0" checked />-->
-<!--      <label @click="$router.push('signup')" class="btn" for="split"-->
-<!--        >Разбить файл</label-->
-<!--      >-->
 
-<!--      <input id="join" name="nav" type="radio" value="1" />-->
-<!--      <label @click="$router.push('/auth')" class="btn" for="join">-->
-<!--        Собрать файл</label-->
-<!--      >-->
-
-<!--      <button @click="$router.push('/auth')" class="auth_btn">-->
-<!--        Войти-->
-<!--      </button>-->
-<!--      <button @click="$router.push('signup')" class="sign_btn">-->
-<!--        Зарегистироваться-->
-<!--      </button>-->
-          <NavBtns>
+          <NavBtns :auth="auth">
 
           </NavBtns>
 
@@ -40,6 +25,7 @@ export default{
   data() {
     return {
       width:0,
+      auth:true,
   }
 },
 methods: {
@@ -69,7 +55,7 @@ input[type="radio"]:checked + .btn {
 }
 
 .nav_img {
-  width: 32px;
+  width: 200px;
 }
 
 .navbar_btns {

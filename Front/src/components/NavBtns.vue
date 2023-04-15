@@ -1,9 +1,11 @@
 <template>
-<!--  <div v-if="auth">-->
-  <button v-for="(btn, index) in btnAuth" :key="index" >
+ <div>
+  <button v-for="(btn, index) in (auth ? btnAuth : btnSign)" :key="index" 
+  :class="[btn.url==='/signup' ? 'sign_btn' : 'auth_btn' ]"
+  @click="$router.push(btn.url)">
     {{btn.name}}
   </button>
-<!--</div>-->
+</div>
 </template>
 
 <script>
@@ -17,11 +19,11 @@ export default {
   },  data() {
     return {
       btnAuth:[{name:"Вакансии", url:"/vacation"},
-        {name:"Фриланс", url:"/vacation"},
-        {name:"База заданий", url:"/vacation"},
-        {name:"Менторы", url:"/vacation"}],
-      btnSign:[{name:"Вход", url:"/vacation"},
-        {name:"Регистрация", url:"/vacation"}],
+        {name:"Фриланс", url:"/freelance"},
+        {name:"База заданий", url:"/base"},
+        {name:"Менторы", url:"/mentors"}],
+      btnSign:[{name:"Вход", url:"/auth"},
+        {name:"Регистрация", url:"/signup"}],
       // sideBarShow: false,
     };
   },
@@ -38,7 +40,8 @@ export default {
   margin-right: 60px;
   border: none;
   background: none;
-
+  font-size: 20px;
+  /* color:white; */
 
 }
 .sign_btn {
@@ -46,5 +49,8 @@ export default {
   border: none;
   background: linear-gradient(90deg, rgba(66,227,180,1) 0%, rgba(0,135,205,1) 100%);
   border-radius: 10px;
+  font-size: 20px;
+  color:white;
+
 }
 </style>
