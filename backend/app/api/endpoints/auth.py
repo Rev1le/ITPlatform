@@ -43,7 +43,7 @@ async def auth_employer(login: Login):
 
 
 @router.post("/worker")
-async def auth_worker(login: Login) -> LoginAccess | JSONResponse:
+async def auth_worker(login: Login):
     password_hash = hashlib.sha256(login.password).hexdigest()
 
     worker = await get_worker_by_hash(
