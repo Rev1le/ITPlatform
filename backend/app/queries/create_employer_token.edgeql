@@ -1,7 +1,7 @@
 insert Token {
     value := <str>$token,
     owner := (
-        select meta::Person
+        select Employer
         filter .id = <uuid>$user_id
     )
 }
