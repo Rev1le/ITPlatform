@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AuthView from '../views/AuthView.vue'
 import SignUpView from '../views/SignUpView.vue'
-import Vacation from "@/views/Vacation";
+import Vacation from "@/views/VacationDesk.vue";
+import VacationTest from "@/views/VacationTest";
 
 const routes = [
   {
@@ -28,6 +29,12 @@ const routes = [
     component: Vacation,
     
     meta: { transition: 'slide-right' },
+  },
+  {
+    path: '/vacationTest/:id',
+    name: 'VacationTest',
+    component: VacationTest,
+    meta: {transition: 'slide-right'}
   }
 ]
 

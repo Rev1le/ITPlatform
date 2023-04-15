@@ -10,7 +10,12 @@
 </template>
 
 <script>
+<<<<<<< HEAD:Front/src/views/Vacation.vue
 import VacantionsList from "@/components/VacantionsList.vue";
+=======
+import NavBar from "@/App";
+import vacantionOffer from "@/components/Vacations/vacantionOffer";
+>>>>>>> 20bf943748bd31ebaca9c50bcd3992a8d4507ae8:Front/src/views/VacationDesk.vue
 export default {
   name: "Vacation",
   components: {VacantionsList}
