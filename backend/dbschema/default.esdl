@@ -15,7 +15,6 @@ module meta {
         required property bio -> str;
         required property hash -> str;
         required property email -> str;
-        required property username -> str;
     }
 
     abstract type Employer extending Person {
