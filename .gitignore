@@ -129,3 +129,32 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/.idea/._.gitignore
+/Front/src/views/._AboutView.vue
+/Front/src/._App.vue
+/Front/src/._assets
+/Front/src/views/._AuthView.vue
+/Front/src/._components
+/Front/src/components/._HelloWorld.vue
+/Front/src/views/._HomeView.vue
+/Front/src/router/._index.js
+/Front/src/store/._index.js
+/Front/src/assets/._logo.png
+/Front/src/assets/._main.css
+/Front/src/._main.js
+/.idea/._modules.xml
+/Front/src/components/._NavBar.vue
+/Front/src/components/._NavDeckstop.vue
+/.idea/._not-hh.iml
+/Front/src/._router
+/Front/src/components/._SideBar.vue
+/Front/src/views/._SignUpView.vue
+/Front/src/._store
+/Front/src/store/._userStore.js
+/.idea/._vcs.xml
+/Front/src/._views
+/.idea/._workspace.xml
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/not-hh.iml
+/.idea/vcs.xml
