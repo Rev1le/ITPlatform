@@ -1,10 +1,11 @@
-from pydantic import BaseModel
 from fastapi import APIRouter
+from pydantic import BaseModel
 
 from app.api.deps import AuthEmplayer
 from app.core.database import edgedb_client
+from app.queries.create_vacancy_async_edgeql import CreateVacancyResult
+from app.queries.create_vacancy_async_edgeql import create_vacancy as db_create_vacancy
 from app.queries.get_vacancies_async_edgeql import GetVacanciesResult, get_vacancies
-from app.queries.create_vacancy_async_edgeql import CreateVacancyResult, create_vacancy as db_create_vacancy
 
 
 class VacancyData(BaseModel):
@@ -12,7 +13,7 @@ class VacancyData(BaseModel):
     about: str
     skills: list[str]
     company: str
-    salary: float | None # If None the salary = 
+    salary: float | None  # If None the salary =
 
 
 router = APIRouter()
@@ -24,13 +25,14 @@ async def get_all_vacancies() -> list[GetVacanciesResult]:
 
 
 @router.post("/")
-async def create_vacancy(employer: AuthEmplayer, vacancy_data: VacancyData) -> CreateVacancyResult:
-    
+async def create_vacancy(
+    employer: AuthEmplayer, vacancy_data: VacancyData
+) -> CreateVacancyResult:
     return await db_create_vacancy(
         edgedb_client,
-        name = vacancy_data.name,
-        about = vacancy_data.about,
-        skills = vacancy_data.skills,
-        company = vacancy_data.company,
-        salary = vacancy_data.salary,
+        name=vacancy_data.name,
+        about=vacancy_data.about,
+        skills=vacancy_data.skills,
+        company=vacancy_data.company,
+        salary=vacancy_data.salary,
     )

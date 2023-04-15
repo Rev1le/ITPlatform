@@ -13,7 +13,9 @@ from app.queries.get_worker_by_token_async_edgeql import (
 )
 
 token_header = APIKeyHeader(name="token")
-AuthEmplayer = TypeVar('Annotated[GetEmployerByTokenResult, Depends(check_auth_employer_token)]')
+AuthEmplayer = TypeVar(
+    "Annotated[GetEmployerByTokenResult, Depends(check_auth_employer_token)]"
+)
 
 
 async def check_auth_employer_token(
@@ -22,7 +24,9 @@ async def check_auth_employer_token(
     employer = await get_employer_by_token(token)
 
     if employer is None:
-        raise HTTPException(status_code=400, detail={"message": "Invalid token in headers"})
+        raise HTTPException(
+            status_code=400, detail={"message": "Invalid token in headers"}
+        )
 
     return employer
 
@@ -30,10 +34,11 @@ async def check_auth_employer_token(
 async def check_auth_worker_token(
     token: Annotated[str, Depends(token_header)]
 ) -> GetWorkerByTokenResult:
-
     worker = await get_worker_by_token(token)
 
     if worker is None:
-        raise HTTPException(status_code=400, detail={"message": "Invalid token in headers"})
+        raise HTTPException(
+            status_code=400, detail={"message": "Invalid token in headers"}
+        )
 
     return worker

@@ -1,15 +1,21 @@
+from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
+from app.api.deps import check_auth_worker_token
 from app.core.database import edgedb_client
-from app.queries.get_task_block_async_edgeql import get_task_block, GetTaskBlockResult
-from app.queries.get_task_block_challenges_async_edgeql import get_task_block_challenges, GetTaskBlockChallengesResult
+from app.queries.get_task_block_async_edgeql import GetTaskBlockResult, get_task_block
+from app.queries.get_task_block_challenges_async_edgeql import (
+    GetTaskBlockChallengesResult,
+    get_task_block_challenges,
+)
 from app.queries.get_task_blocks_preview_async_edgeql import (
     GetTaskBlocksPreviewResult,
     get_task_blocks_preview,
 )
+from app.queries.get_worker_by_token_async_edgeql import GetWorkerByTokenResult
 
 
 class Question(BaseModel):
@@ -37,15 +43,21 @@ async def all_tasks_blocks() -> list[GetTaskBlocksPreviewResult]:
 
 
 @router.get("/{id}")
-async def task_block_info(id: UUID) -> GetTaskBlockResult:
-    result = await get_task_block(edgedb_client, task_block_id=id)
+async def task_block_info(
+    id: UUID,
+    worker: Annotated[GetWorkerByTokenResult, Depends(check_auth_worker_token)],
+) -> GetTaskBlockResult:
+    result = await get_task_block(edgedb_client, user_id=worker.id, task_block_id=id)
     if result is None:
         raise HTTPException(status_code=404, detail={"message": "Unknown task block"})
     return result
 
 
 @router.get("/{id}/challenges")
-async def task_block_challenges(id: UUID) -> GetTaskBlockChallengesResult:
+async def task_block_challenges(
+    id: UUID,
+    worker: Annotated[GetWorkerByTokenResult, Depends(check_auth_worker_token)],
+) -> GetTaskBlockChallengesResult:
     result = await get_task_block_challenges(edgedb_client, task_block_id=id)
     if result is None:
         raise HTTPException(status_code=404, detail={"message": "Unknown task block"})

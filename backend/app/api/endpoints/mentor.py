@@ -1,18 +1,21 @@
-from fastapi import APIRouter
+from uuid import UUID
 
-from app.core.database import edgedb_client
+from fastapi import APIRouter
+from pydantic import BaseModel
+
 from app.api.deps import AuthEmplayer
+from app.core.database import edgedb_client
+from app.queries.create_mentor_async_edgeql import CreateMentorResult, create_mentor
 from app.queries.get_mentors_async_edgeql import GetMentorsResult, get_mentors
-from app.queries.create_mentors_async_edgeql import CreateMentorsResult, create_mentor as db_create_mentor
 
 router = APIRouter()
 
 
-class MentorData():
-    user_id: uuid.UUID,
-    skills: list[str],
-    salary: float,
-    resume: str,
+class MentorData(BaseModel):
+    user_id: UUID
+    skills: list[str]
+    salary: float
+    resume: str
 
 
 @router.get("/all")
@@ -21,15 +24,11 @@ async def get_all_mentors() -> list[GetMentorsResult]:
 
 
 @router.post("/create_mentor")
-async def create_mentor(
-    employer: AuthEmplayer, 
-    mentor_data: MentorData
-    ) -> CreateMentorsResult:
-    
-    return await db_create_mentor(
-        edgedb_client, 
-        user_id = employer.id,
-        skills = mentor_data.skills,
-        salary = mentor_data.salary,
-        resume = mentor_data.resume
-        )
+async def create(employer: AuthEmplayer, mentor_data: MentorData) -> CreateMentorResult:
+    return await create_mentor(
+        edgedb_client,
+        user_id=employer.id,
+        skills=mentor_data.skills,
+        salary=mentor_data.salary,
+        resume=mentor_data.resume,
+    )
