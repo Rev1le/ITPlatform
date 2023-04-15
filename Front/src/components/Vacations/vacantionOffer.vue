@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import StackIcon from "@/components/StackIcon";
+import StackIcon from "@/components/Vacations/StackIcon";
 export default{
   name: "vacantionOffer",
   components: {StackIcon},
