@@ -11,6 +11,7 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+Front/node_modules
 downloads/
 eggs/
 .eggs/
@@ -102,6 +103,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+._
 .env
 .venv
 env/
