@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import VacantionsList from "@/components/Vacations/VacantionsList.vue.js";
+import VacantionsList from "@/components/Vacations/VacantionsList.vue";
 export default {
   name: "Vacation",
   components: {VacantionsList}
@@ -20,6 +20,8 @@ export default {
 <style scoped>
   .vacations-wrap{
     padding: 50px var(--pad) 0;
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
   }
 </style>

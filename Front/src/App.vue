@@ -7,7 +7,7 @@
   </router-view>
 </template>
 <script>
-import NavBar from "@/components/NavBar.vue";
+import NavBar from "@/components/NavBars/NavBar.vue";
 export default {
   components: {
     NavBar,
