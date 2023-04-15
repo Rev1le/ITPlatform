@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, TypeVar
 
 from fastapi import Depends
 from fastapi.security import APIKeyHeader
@@ -13,6 +13,7 @@ from app.queries.get_worker_by_token_async_edgeql import (
 )
 
 token_header = APIKeyHeader(name="token")
+AuthEmplayer = TypeVar('Annotated[GetEmployerByTokenResult, Depends(check_auth_employer_token)]')
 
 
 async def check_auth_employer_token(
