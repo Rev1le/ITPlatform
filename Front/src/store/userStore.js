@@ -2,7 +2,7 @@ import axios from "axios";
 export const userStore = {
   state: () => (
     {
-    role:'', //user || admin
+    role:'', 
     name:'', 
     user:'',
   }),

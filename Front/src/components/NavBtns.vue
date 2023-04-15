@@ -1,56 +1,65 @@
 <template>
- <div>
-  <button v-for="(btn, index) in (auth ? btnAuth : btnSign)" :key="index" 
-  :class="[btn.url==='/signup' ? 'sign_btn' : 'auth_btn' ]"
-  @click="$router.push(btn.url)">
-    {{btn.name}}
-  </button>
-</div>
+  <div v-if="!getName" class="navBtns">
+    <button class="auth_btn" @click="$router.push('/auth')">Войти</button>
+    <button class="sign_btn" @click="$router.push('/signup')">
+      Зарегестрироваться
+    </button>
+  </div>
+  <div v-else class="navBtns">
+    <button class="sign_btn" @click="$router.push('/profile')">
+      {{ getName }}
+    </button>
+  </div>
 </template>
 
 <script>
-
+import { mapGetters } from "vuex";
 export default {
-  props: {
-    auth: {
-      type: Boolean,
-      default: false,
-    },
-  },  data() {
-    return {
-      btnAuth:[{name:"Вакансии", url:"/vacation"},
-        {name:"Фриланс", url:"/freelance"},
-        {name:"База заданий", url:"/base"},
-        {name:"Менторы", url:"/mentors"}],
-      btnSign:[{name:"Вход", url:"/auth"},
-        {name:"Регистрация", url:"/signup"}],
-      // sideBarShow: false,
-    };
+  // data() {
+  //   return {
+  //     btnSign:[{name:"Войти", url:"/auth"},
+  //       {name:"Зарегестрироваться", url:"/signup"}],
+  //     btnUser:[{name:this.getName, url:"/profile"}],
+
+  //   };
+  // },
+  computed: {
+    ...mapGetters({
+      getName: "userStore/getName",
+    }),
   },
-  // methods: {
-  //   showSideBar(bool) {
-  //     this.sideBarShow = bool;
-  //   },
+  // watch: {
+  //   // whenever question changes, this function will run
+  //   getName(oldVal, newVal){
+  //     // this.$nextTick(() => {
+  //       this.btnUser[0].name=newVal;
+  //       console.log('тут форсе')
+  //     // });
+
+  //   }
   // },
 };
 </script>
 
 <style scoped>
 .auth_btn {
-  margin-right: 60px;
+  margin: 0 60px;
   border: none;
   background: none;
   font-size: 20px;
   /* color:white; */
-
 }
 .sign_btn {
   padding: 8.5px 20px;
   border: none;
-  background: linear-gradient(90deg, rgba(66,227,180,1) 0%, rgba(0,135,205,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(66, 227, 180, 1) 0%,
+    rgba(0, 135, 205, 1) 100%
+  );
   border-radius: 10px;
   font-size: 20px;
-  color:white;
-
+  color: white;
 }
+
 </style>

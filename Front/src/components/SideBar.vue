@@ -2,27 +2,33 @@
   <transition name="v-sidebar">
     <div class="sidebar" @click.stop="hideSideBar" v-if="show">
       <div @click.stop class="menu">
+        <button id="closeSideBar" @click="hideSideBar">X</button>
         <div class="menuItem">
-          <button id="closeSideBar" @click="hideSideBar">X</button>
-          <button style="margin-top: 55px">
+          <NavBtns class="navBtns"></NavBtns>
+
+          <!-- <button style="margin-top: 55px">
             Здесь могла быть ваша копка навигации
           </button>
           <button>Бесполезная кнопка</button>
           <div
             style="width: 100%; display: flex; justify-content: center"
-          ></div>
+          ></div> -->
         </div>
       </div>
     </div>
   </transition>
   <transition name="back">
-    <div  @click="hideSideBar" v-if="show" class="back"></div>
+    <div @click="hideSideBar" v-if="show" class="back"></div>
   </transition>
 </template>
 
 <script>
+import NavBtns from "./NavBtns.vue";
 export default {
   name: "my-sidebar",
+  components: {
+    NavBtns,
+  },
   props: {
     show: {
       type: Boolean,
@@ -38,7 +44,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .back {
   position: fixed;
   height: 100vh;
@@ -49,13 +55,13 @@ export default {
   z-index: 9;
   transition: 0.3s ease-in-out;
 }
-#closeSideBar{
+#closeSideBar {
   font-size: 55px;
-                      font-weight: 400;
-                      position: absolute;
-                      width: 50px;
-                      right: 5px;
-                      margin: 5px 20px 20px 50px;
+  font-weight: 400;
+  position: absolute;
+  width: 50px;
+  right: 5px;
+  margin: 5px 20px 20px 50px;
 }
 .sidebar {
   position: fixed;
@@ -68,22 +74,23 @@ export default {
   justify-content: right;
 }
 .menu {
-  background-color: var(--color-bg);
+  background-color: white;
   width: 65%;
 }
 .menuItem {
-  display: inline;
+  padding: 100px 5%;
   width: 100%;
 }
+.navBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .menuItem .btn {
- 
   width: 100%;
-  
 }
-.menuItem .btn:hover {
-  
-  color: var(--color-text-special);
-}
+
 .back-enter-active,
 .back-leave-active {
   transition: opacity 0.8s;

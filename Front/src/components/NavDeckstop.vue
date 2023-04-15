@@ -1,57 +1,74 @@
 <template>
-  <div data-tauri-drag-region class="Navbar-vue">
+  <div class="nav">
+  <div class="Navbar-vue">
     <img class="nav_img" src="@/assets/sbertest.svg" alt="" />
-
-    <div v-if="width > 600" class="navbar_btns">
-
-          <NavBtns :auth="auth">
-
-          </NavBtns>
-
+    <div v-if="width > 1100" class="navbar_btns">
+      <NavBtns :user="{ name: 'Рома', auth: true }"> </NavBtns>
     </div>
-    <div v-else >
-      <button @click="SideBar" >☰</button>
+    <div v-else class="navbar_btns_side">
+      <button @click="SideBar">☰</button>
     </div>
   </div>
+  <div class="nav_text">
+    <span class="work">Работа для тех,<br> кто хочет</span>
+    <!-- <br> -->
+    <span class="work-more">
+      Большего
+    </span>
+    <NavBtnBottom></NavBtnBottom>
+  </div>
+</div>
 </template>
 
 <script>
 import NavBtns from "@/components/NavBtns";
-
-export default{
-  components:{
-    NavBtns
+import NavBtnBottom from "./NavBtnBottom.vue";
+export default {
+  components: {
+    NavBtns,
+    NavBtnBottom,
   },
   data() {
     return {
-      width:0,
-      auth:true,
-  }
-},
-methods: {
+      width: 0,
+      auth: true,
+    };
+  },
+  methods: {
     updateWidth() {
       this.width = window.innerWidth;
-    
     },
-    SideBar(){
-      console.log("sss")
+    SideBar() {
+      console.log("sss");
       this.$emit("showSideBar", true);
-
     },
   },
   created() {
     window.addEventListener("resize", this.updateWidth);
     this.updateWidth();
   },
-}
+};
 </script>
 
 <style scoped>
-input[type="radio"] {
-  display: none;
+.work{
+  font-style: normal;
+font-weight: 600;
+font-size: 64px;
+line-height: 76px;
+text-align: center;
+color: #3E3D4B;
 }
-input[type="radio"]:checked + .btn {
-  border-bottom: 2px solid var(--main-color);
+.work-more{
+  font-style: normal;
+font-weight: 900;
+font-size: 110px;
+line-height: 96px;
+text-align: center;
+background-image: linear-gradient(to top right,  #0188CE, #43E3B5);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 .nav_img {
@@ -64,45 +81,42 @@ input[type="radio"]:checked + .btn {
   align-items: center;
   margin-left: auto;
 }
+.nav_text{
+  padding: 0 10%;
+  margin-top:50px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+}
+.navbar_btns_side {
+  margin-left: auto;
+}
+.navbar_btns_side button {
+  font-size: 20px;
+}
 
 .Navbar-vue {
+  /* position: sticky;
+  width: 100vw; */
   z-index: 10;
   display: flex;
   padding: 0 10% 0 10%;
   align-items: center;
   height: 100px;
   align-items: center;
+  /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.btn {
-  transition: all 0.3s ease;
-  text-decoration: none;
-  padding: 5px;
-  border-bottom: 2px solid transparent;
-  font-size: 15px;
-  background: none;
-  font-weight: bold;
-  color: var(--main-color);
-  margin-right: 15px;
-  cursor: pointer;
-}
-.auth_btn {
-  margin-right: 60px;
-  border: none;
-  background: none;
-
-
-}
-.sign_btn {
-  padding: 8.5px 20px;
-  border: none;
-  background: linear-gradient(90deg, rgba(66,227,180,1) 0%, rgba(0,135,205,1) 100%);
-  border-radius: 10px;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .btn:hover {
-    border-bottom: 2px solid var(--main-color);
-  }
-}
+@media (max-width: 960px) {
+        .work-more{
+          font-size: 56px;
+          line-height: 60px;
+        }
+        .work{
+          font-size: 36px;
+          line-height: 40px;
+        }
+    }
 </style>

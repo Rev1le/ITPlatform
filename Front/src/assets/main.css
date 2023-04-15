@@ -8,3 +8,21 @@
     --color-bg:white;
     font-family: "SB Sans Text", sans-serif;
 }
+
+button{
+    cursor: pointer;
+    border: none;
+    background: inherit;
+}
+
+body{
+    /* padding: 0 10%; */
+}
+/* .auth_btn {
+  
+    border: none;
+    background: none;
+    font-size: 20px;
+    color:white;
+    margin-left: 40px;
+  } */
