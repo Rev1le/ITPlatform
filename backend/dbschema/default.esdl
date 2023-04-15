@@ -29,6 +29,7 @@ module default {
     type Worker extending meta::Person {
         property resume -> str;
         property skills -> array<str>;
+        multi link completed := .<completed[is TaskBlock];
     }
 
     type Token extending meta::Created {
