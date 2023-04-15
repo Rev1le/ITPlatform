@@ -1,7 +1,7 @@
 <template>
   <div class="vacations-wrap">
-  <div class="vacations-sort">
-
+  <div class="vacations-search">
+      
   </div>
  <div class="vacation_desk">
    <VacantionsList/>
@@ -10,12 +10,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD:Front/src/views/Vacation.vue
-import VacantionsList from "@/components/VacantionsList.vue";
-=======
-import NavBar from "@/App";
-import vacantionOffer from "@/components/Vacations/vacantionOffer";
->>>>>>> 20bf943748bd31ebaca9c50bcd3992a8d4507ae8:Front/src/views/VacationDesk.vue
+import VacantionsList from "@/components/Vacations/VacantionsList.vue.js";
 export default {
   name: "Vacation",
   components: {VacantionsList}
