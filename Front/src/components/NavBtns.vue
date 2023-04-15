@@ -1,7 +1,6 @@
 <template>
 <!--  <div v-if="auth">-->
-  <button v-for="(btn, index) in btnAuth" :key="index"
-          >
+  <button v-for="(btn, index) in btnAuth" :key="index" >
     {{btn.name}}
   </button>
 <!--</div>-->
@@ -17,12 +16,12 @@ export default {
     },
   },  data() {
     return {
-      btnAuth:[{name:"Вакансии", url:"/vacancy"},
-        {name:"Фриланс", url:"/freelance"},
-        {name:"База заданий", url:"/tasks"},
-        {name:"Менторы", url:"/mentors"}],
-      btnSign:[{name:"Вход", url:"/auth"},
-        {name:"Регистрация",url:"/signup"}],
+      btnAuth:[{name:"Вакансии", url:"/vacation"},
+        {name:"Фриланс", url:"/vacation"},
+        {name:"База заданий", url:"/vacation"},
+        {name:"Менторы", url:"/vacation"}],
+      btnSign:[{name:"Вход", url:"/vacation"},
+        {name:"Регистрация", url:"/vacation"}],
       // sideBarShow: false,
     };
   },

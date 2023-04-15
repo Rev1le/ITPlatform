@@ -19,7 +19,9 @@
 <!--      <button @click="$router.push('signup')" class="sign_btn">-->
 <!--        Зарегистироваться-->
 <!--      </button>-->
-          <NavBtns></NavBtns>
+          <NavBtns>
+
+          </NavBtns>
 
     </div>
     <div v-else >
