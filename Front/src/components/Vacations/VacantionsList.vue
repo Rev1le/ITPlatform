@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import vacantionOffer from "@/components/vacantionOffer";
+import vacantionOffer from "@/components/Vacations/vacantionOffer";
 export default {
   name: "vacation-list",
   components: { vacantionOffer },
