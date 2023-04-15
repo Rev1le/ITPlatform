@@ -14,7 +14,9 @@ module meta {
         required property birthday -> datetime;
         required property bio -> str;
         required property hash -> str;
-        required property email -> str;
+        required property email -> str {
+            constraint exclusive;
+        }
     }
 }
 
