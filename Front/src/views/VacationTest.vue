@@ -15,14 +15,18 @@
       </div>
       <div class="offer_text">
         Грустный очень нудый текст зачем он нужен воот Да кто это такой ваш цсс зачем я тут сижу на хакатоне душно уши
-        болят
+        болят ЫАЫаыа ыа ЫАЫАЫА Ы АЫАЫАЫАЫАЫАЫаааааа ЫЫЫЫЫЫЫЫ ааа ВЫаываыаук ывацуыуавыавыавыцу куцу ц
       </div>
       <div class="stack_ico">
         <StackIcon stack-name="Биба"/>
         <StackIcon stack-name="SQL"/>
       </div>
       <div class="other_requirements">
-
+        <p class="zag">Требования </p>
+        <ul>
+          <li v-for="(item, index) in requirements" :key="index" class="list">{{item}}</li>
+        </ul>
+        <p class="zag" > Задания </p>
       </div>
     </div>
   </div>
@@ -33,6 +37,11 @@ import StackIcon from "@/components/Vacations/StackIcon";
 import workRequirements from "@/components/Vacations/workRequirements";
 
 export default {
+  data(){
+    return {
+      requirements: ["nim", "react", "vue", "sql"]
+    }
+  },
   name: "Vacation",
   components: {StackIcon, workRequirements}
 }
@@ -103,6 +112,26 @@ export default {
 .stack_ico {
   display: flex;
   margin-right: 30px;
+
+}
+.other_requirements{
+  margin-top: 43px;
+}
+.zag{
+  font-family: 'SB Sans Display', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.list{
+
+  font-family: 'SB Sans Text', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 5px;
 
 }
 </style>

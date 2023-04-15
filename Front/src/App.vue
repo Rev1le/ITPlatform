@@ -14,6 +14,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .slide-left-enter-active,
 .slide-left-leave-active,
