@@ -29,7 +29,7 @@ class GetTaskBlockResult(NoPydanticValidation):
 async def get_task_block(
     executor: edgedb.AsyncIOExecutor,
     *,
-    user_id: uuid.UUID,
+    task_block_id: uuid.UUID,
 ) -> GetTaskBlockResult | None:
     return await executor.query_single(
         """\
@@ -40,7 +40,7 @@ async def get_task_block(
             description,
             completed_count := count(.completed)
         }
-        filter .id = <uuid>$user_id\
+        filter .id = <uuid>$task_block_id\
         """,
-        user_id=user_id,
+        task_block_id=task_block_id,
     )

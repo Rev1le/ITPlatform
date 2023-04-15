@@ -80,5 +80,6 @@ module default {
         multi link questions -> TaskQuestion;
         multi link codes -> TaskCode;
         multi link completed -> Worker;
+        multi link failed -> Worker;
     }
 }
