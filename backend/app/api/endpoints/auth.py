@@ -1,7 +1,7 @@
 import hashlib
 import secrets
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
@@ -25,7 +25,7 @@ router = APIRouter()
 
 
 @router.post("/employer")
-async def auth_employer(login: Login):
+async def auth_employer(login: Login) -> LoginAccess:
     password_hash = hashlib.sha256(login.password).hexdigest()
 
     employer = await get_employer_by_hash(
@@ -33,7 +33,7 @@ async def auth_employer(login: Login):
     )
 
     if employer is None:
-        return JSONResponse(status_code=404, content={"message": "Invalid login data"})
+        raise HTTPException(status_code=404, detail={"message": "Invalid login data"})
 
     auth_token = secrets.token_urlsafe(32)
 
@@ -43,7 +43,7 @@ async def auth_employer(login: Login):
 
 
 @router.post("/worker")
-async def auth_worker(login: Login):
+async def auth_worker(login: Login) -> LoginAccess:
     password_hash = hashlib.sha256(login.password).hexdigest()
 
     worker = await get_worker_by_hash(
@@ -51,7 +51,7 @@ async def auth_worker(login: Login):
     )
 
     if worker is None:
-        return JSONResponse(status_code=404, content={"message": "Invalid login data"})
+        raise HTTPException(status_code=404, detail={"message": "Invalid login data"})
 
     auth_token = secrets.token_urlsafe(32)
 

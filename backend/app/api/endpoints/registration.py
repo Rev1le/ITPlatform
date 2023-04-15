@@ -19,7 +19,6 @@ class Registration(BaseModel):
     name: str
     description: str
     birthday: str
-    avatar: Annotated[UploadFile, File()]
 
 
 class RegistrationAccess(BaseModel):
@@ -30,7 +29,7 @@ router = APIRouter()
 
 
 @router.post("/employer")
-async def registration_employer(registration_data: Registration):
+async def registration_employer(registration_data: Registration) -> RegistrationAccess:
     birthday = datetime.strptime(registration_data.birthday, "%d-%m-%Y")
     employer = await create_employer(
         edgedb_client,
@@ -48,7 +47,7 @@ async def registration_employer(registration_data: Registration):
 
 
 @router.post("/worker")
-async def registration_worker(registration_data: Registration):
+async def registration_worker(registration_data: Registration) -> RegistrationAccess:
     birthday = datetime.strptime(registration_data.birthday, "%d-%m-%Y")
     employer = await create_worker(
         edgedb_client,
