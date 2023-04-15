@@ -1,19 +1,16 @@
 <template>
-  <head>
-    <NavBar>
-    </NavBar>
-    <title>Вакансии</title>
-  </head>
-  <div>
-    Пидор
-  </div>
+ <div>
+   <vacantionOffer>
+   </vacantionOffer>
+ </div>
 </template>
 
 <script>
 import NavBar from "@/App";
+import vacantionOffer from "@/components/vacantionOffer";
 export default {
   name: "Vacation",
-  components: {NavBar}
+  components: {NavBar,vacantionOffer}
 }
 </script>
 
