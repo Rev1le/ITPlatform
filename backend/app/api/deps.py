@@ -21,7 +21,7 @@ async def check_auth_employer_token(
 ) -> GetEmployerByTokenResult:
     employer = await get_employer_by_token(token)
 
-    if employer == None:
+    if employer is None:
         raise HTTPException(status_code=400, detail={"message": "Invalid token in headers"})
 
     return employer
@@ -33,7 +33,7 @@ async def check_auth_worker_token(
 
     worker = await get_worker_by_token(token)
 
-    if employer == None:
+    if worker is None:
         raise HTTPException(status_code=400, detail={"message": "Invalid token in headers"})
 
     return worker
