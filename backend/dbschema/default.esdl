@@ -33,6 +33,8 @@ module default {
         required link owner -> meta::Person;
     }
 
+    type
+
     type Employer extending meta::Person {
     }
 }
