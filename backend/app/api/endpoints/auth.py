@@ -25,7 +25,7 @@ router = APIRouter()
 
 @router.post("/employer")
 async def auth_employer(login: Login) -> LoginAccess:
-    password_hash = hashlib.sha256(login.password).hexdigest()
+    password_hash = hashlib.sha256(login.password.encode()).hexdigest()
 
     employer = await get_employer_by_hash(
         edgedb_client, hash=password_hash, email=login.email
