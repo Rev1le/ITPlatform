@@ -2,7 +2,6 @@ import hashlib
 import secrets
 
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from app.core.database import edgedb_client

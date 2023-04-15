@@ -1,9 +1,8 @@
 import hashlib
 import secrets
-from datetime import datetime
-from typing import Annotated
+from datetime import datetime, timezone
 
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter
 from pydantic import BaseModel
 
 from app.core.database import edgedb_client
@@ -30,7 +29,9 @@ router = APIRouter()
 
 @router.post("/employer")
 async def registration_employer(registration_data: Registration) -> RegistrationAccess:
-    birthday = datetime.strptime(registration_data.birthday, "%d-%m-%Y")
+    birthday = datetime.strptime(registration_data.birthday, "%d-%m-%Y").replace(
+        tzinfo=timezone.utc
+    )
     employer = await create_employer(
         edgedb_client,
         name=registration_data.name,
@@ -48,12 +49,14 @@ async def registration_employer(registration_data: Registration) -> Registration
 
 @router.post("/worker")
 async def registration_worker(registration_data: Registration) -> RegistrationAccess:
-    birthday = datetime.strptime(registration_data.birthday, "%d-%m-%Y")
+    birthday = datetime.strptime(registration_data.birthday, "%d-%m-%Y").replace(
+        tzinfo=timezone.utc
+    )
     employer = await create_worker(
         edgedb_client,
         name=registration_data.name,
         birthday=birthday,
-        hash=hashlib.sha256(registration_data.password).hexdigest(),
+        hash=hashlib.sha256(registration_data.password.encode()).hexdigest(),
         email=registration_data.email,
     )
 
