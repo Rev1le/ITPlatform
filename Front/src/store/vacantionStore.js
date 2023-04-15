@@ -1,12 +1,48 @@
 import axios from "axios";
-export const vacantionsStore = {
+export const vacantionStore = {
   state: () => ({
     vacantions: [
       {
-        name: "",
-        salary: "",
-        desription: "",
-        skills: [],
+        name: "Rust разработчик",
+        salary: "Зарплата договорная",
+        desription:
+          "Требуется Python-разработчик для работы в компании. Кандидат должен иметь опыт работы с языком программирования Python и знание основных библиотек и фреймворков. Основные обязанности включают разработку и поддержку программного обеспечения на Python, написание и отладку кода, тестирование и оптимизацию производительности.",
+        skills: ["Биба", "боба", "python"],
+      },
+      {
+        name: "React разработчик",
+        salary: "Зарплата договорная",
+        desription:
+          "Требуется Python-разработчик для работы в компании. Кандидат должен иметь опыт работы с языком программирования Python и знание основных библиотек и фреймворков. Основные обязанности включают разработку и поддержку программного обеспечения на Python, написание и отладку кода, тестирование и оптимизацию производительности.",
+        skills: ["Биба", "боба", "python"],
+      },
+      {
+        name: "Nim разработчик",
+        salary: "Зарплата договорная",
+        desription:
+          "Требуется Python-разработчик для работы в компании. Кандидат должен иметь опыт работы с языком программирования Python и знание основных библиотек и фреймворков. Основные обязанности включают разработку и поддержку программного обеспечения на Python, написание и отладку кода, тестирование и оптимизацию производительности.",
+        skills: ["Биба", "боба", "python"],
+      },
+      {
+        name: "JS разработчик",
+        salary: "Зарплата договорная",
+        desription:
+          "Требуется Python-разработчик для работы в компании. Кандидат должен иметь опыт работы с языком программирования Python и знание основных библиотек и фреймворков. Основные обязанности включают разработку и поддержку программного обеспечения на Python, написание и отладку кода, тестирование и оптимизацию производительности.",
+        skills: ["Биба", "боба", "python"],
+      },
+      {
+        name: "Питон разработчик",
+        salary: "Зарплата договорная",
+        desription:
+          "Требуется Python-разработчик для работы в компании. Кандидат должен иметь опыт работы с языком программирования Python и знание основных библиотек и фреймворков. Основные обязанности включают разработку и поддержку программного обеспечения на Python, написание и отладку кода, тестирование и оптимизацию производительности.",
+        skills: ["Биба", "боба", "python"],
+      },
+      {
+        name: "React разработчик",
+        salary: "Зарплата договорная",
+        desription:
+          "Требуется Python-разработчик для работы в компании. Кандидат должен иметь опыт работы с языком программирования Python и знание основных библиотек и фреймворков. Основные обязанности включают разработку и поддержку программного обеспечения на Python, написание и отладку кода, тестирование и оптимизацию производительности.",
+        skills: ["Биба", "боба", "python"],
       },
     ],
     selectedSort: "",
@@ -24,11 +60,11 @@ export const vacantionsStore = {
     getVacantions(state) {
       return state.vacantions;
     },
-    sortedVacantions(state) {
-        return [...state.Vacantions].sort((vac1, vac2) => vac1[state.selectedSort]?.localeCompare(vac2[state.selectedSort]))
-    },
-    sortedAndSearchedPosts(state, getters) {
-        return getters.sortedPosts.filter(Vacantions => Vacantions.name.toLowerCase().includes(state.searchQuery.toLowerCase()))
+    // sortedVacantions(state) {
+    //     return [...state.Vacantions].sort((vac1, vac2) => vac1[state.selectedSort]?.localeCompare(vac2[state.selectedSort]))
+    // },
+    sortedAndSearchedVacantions(state) {
+        return [...state.vacantions].filter(Vacantions => Vacantions.name.toLowerCase().includes(state.searchQuery.toLowerCase()))
     }
     // getName(state) {
     //   return state.name;
@@ -40,6 +76,10 @@ export const vacantionsStore = {
   mutations: {
     setVacantions(state, vacantions) {
       state.vacantions = vacantions;
+    },
+    setSearchQuery(state, searchQuery) {
+
+      state.searchQuery = searchQuery;
     },
     // setName(state, name) {
     //   state.name = name;
