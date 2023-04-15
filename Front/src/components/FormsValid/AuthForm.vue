@@ -1,6 +1,6 @@
 <template>
     <FormInput>
-        <h1>Регистрация</h1>
+        <h1>Войти</h1>
         <p class="errors" v-if="errors.length">
             Пожалуйста, выполните следующие требования:
             <ul >
@@ -9,7 +9,7 @@
         </p>
         <input class="input-form" type="text" placeholder="Электронная почта" v-model="SignUp.mail">
         <input class="input-form" type="text" placeholder="Пароль" v-model="SignUp.pass">
-        <button class="button-form" @click="toParent"> Зарегистрироваться </button>
+        <button class="button-form" @click="toParent"> Войти </button>
     </FormInput>
 </template>
 

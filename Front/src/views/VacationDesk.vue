@@ -12,6 +12,7 @@
 <script>
 
 import VacantionsList from "@/components/Vacations/VacantionsList.vue";
+import Tasks from "@/components/Vacations/Tasks";
 
 
 import NavBar from "@/App";
