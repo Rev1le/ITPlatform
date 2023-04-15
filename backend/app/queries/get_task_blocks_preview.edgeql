@@ -1,4 +1,5 @@
 select TaskBlock {
+    id,
     name,
     difficulty,
     description,
