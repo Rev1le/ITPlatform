@@ -16,9 +16,6 @@ module meta {
         required property hash -> str;
         required property email -> str;
     }
-
-    abstract type Employer extending Person {
-    }
 }
 
 module default {
@@ -30,5 +27,8 @@ module default {
     type Token extending meta::Created {
         required property value -> str;
         required link owner -> meta::Person;
+    }
+
+    type Employer extending meta::Person {
     }
 }
