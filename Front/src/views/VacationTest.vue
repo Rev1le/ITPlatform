@@ -1,12 +1,10 @@
 <template>
   <div class="vacation_page">
-    <div>
-      <workRequirements/>
-    </div>
-
+    <workRequirements/>
     <div class="window_border">
       <p class="offer_title">
         Питон разработчик
+        <button @click="$router.go(-1)" ><img src="@/assets/close.png" alt="Назад" class="close_But"/></button>
       </p>
       <div class="information_string">
         <b class="company_Name">
@@ -27,7 +25,7 @@
       <div class="other_requirements">
         <p class="zag">Требования </p>
         <ul>
-          <li v-for="(item, index) in requirements" :key="index" class="list">{{item}}</li>
+          <li v-for="(item, index) in requirements" :key="index" class="list"> - {{item}}</li>
         </ul>
         <p class="zag" > Задания </p>
       </div>
@@ -40,6 +38,7 @@
 import StackIcon from "@/components/Vacations/StackIcon";
 import workRequirements from "@/components/Vacations/workRequirements";
 import Tasks from "@/components/Vacations/Tasks";
+
 export default {
   data(){
     return {
@@ -53,15 +52,21 @@ export default {
 
 <style scoped>
 .vacation_page {
-  padding: 0 10%;
+  padding: 20px 10%;
   display: flex;
+  flex-direction: row;
+  gap: 2%;
 
 }
 
+
 .window_border {
-  padding-left: 30px;
+  padding: 1% 3%;
   background: #EFFCF1;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 
 }
 
@@ -69,7 +74,9 @@ export default {
   font-family: "SB Sans Display Semibold", sans-serif;
   font-style: normal;
   font-size: 48px;
-  padding-top: 32px;
+  display: flex;
+  justify-content: space-between;
+
 }
 
 .company_Name {
@@ -82,8 +89,13 @@ export default {
 .information_string {
   display: flex;
   gap: 30px;
-  padding-top: 10px;
 
+
+}
+
+.close_But{
+  height: 20px;
+  width: 20px;
 }
 
 .salary {
@@ -101,29 +113,30 @@ export default {
   font-style: normal;
   font-size: 18px;
   color: #3E3D4B;
-  padding-top: 10px;
 }
 
 .stack_ico {
   display: flex;
-  margin-right: 30px;
+  justify-content: flex-start;
+  gap: 10px;
 
 }
 .other_requirements{
-  margin-top: 43px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .zag{
   font-family: 'SB Sans Display', sans-serif;
   font-style: normal;
   font-size: 30px;
-  margin-bottom: 10px;
 }
 .list{
-
+  display: flex;
   font-family: 'SB Sans Text', sans-serif;
   font-style: normal;
-  font-size: 18px;
-  margin-bottom: 5px;
+  font-size: 20px;
+
 
 }
 </style>
