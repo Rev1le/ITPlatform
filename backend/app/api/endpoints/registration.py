@@ -36,7 +36,7 @@ async def registration_employer(registration_data: Registration) -> Registration
         edgedb_client,
         name=registration_data.name,
         birthday=birthday,
-        hash=hashlib.sha256(registration_data.password).hexdigest(),
+        hash=hashlib.sha256(registration_data.password.encode()).hexdigest(),
         email=registration_data.email,
     )
 
