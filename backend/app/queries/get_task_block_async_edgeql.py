@@ -24,11 +24,14 @@ class GetTaskBlockResult(NoPydanticValidation):
     difficulty: int
     description: str
     completed_count: int
+    is_completed: bool
+    is_failed: bool
 
 
 async def get_task_block(
     executor: edgedb.AsyncIOExecutor,
     *,
+    user_id: uuid.UUID,
     task_block_id: uuid.UUID,
 ) -> GetTaskBlockResult | None:
     return await executor.query_single(
@@ -38,9 +41,12 @@ async def get_task_block(
             name,
             difficulty,
             description,
-            completed_count := count(.completed)
+            completed_count := count(.completed),
+            is_completed := (select <uuid>$user_id in TaskBlock.completed.id),
+            is_failed := (select <uuid>$user_id in TaskBlock.failed.id)
         }
         filter .id = <uuid>$task_block_id\
         """,
+        user_id=user_id,
         task_block_id=task_block_id,
     )
