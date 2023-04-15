@@ -10,21 +10,22 @@ module meta {
         required property name -> str {
             constraint max_len_value(1024);
         }
-        required property photo -> str;
+
         required property birthday -> datetime;
-        required property bio -> str;
         required property hash -> str;
         required property email -> str {
             constraint exclusive;
         }
+        property bio -> str;
+        property photo -> str;
         multi link tokens := .<owner[is default::Token]
     }
 }
 
 module default {
     type Worker extending meta::Person {
-        required property resume -> str;
-        required property skills -> array<str>;
+        property resume -> str;
+        property skills -> array<str>;
     }
 
     type Token extending meta::Created {
