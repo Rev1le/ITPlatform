@@ -20,6 +20,9 @@ module meta {
         property photo -> str;
         multi link tokens := .<owner[is default::Token]
     }
+
+    abstract type Task extending Created {
+    }
 }
 
 module default {
@@ -48,5 +51,26 @@ module default {
     type Recruiter extending meta::Created {
         required link employer -> Employer;
         multi link vacancies -> Vacancy;
+    }
+
+    type TaskQuestion extending meta::Task {
+        required property question -> str;
+        required property answers -> array<str>;
+        required property right_answer -> str;
+    }
+
+    type TaskCodeTest extending meta::Created {
+        required property input -> str;
+        required property output -> str;
+    }
+
+    type TaskCode extending meta::Task {
+        required property question -> str;
+        multi link tests -> TaskCodeTest;
+    }
+
+    type TaskBlock extending meta::Task {
+        required property name -> str;
+        required property difficulty -> int;
     }
 }
