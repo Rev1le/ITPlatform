@@ -8,7 +8,7 @@
 
 <script>
 import NavBar from "@/App";
-import vacantionOffer from "@/components/vacantionOffer";
+import vacantionOffer from "@/components/Vacations/vacantionOffer";
 export default {
   name: "Vacation",
   components: {NavBar,vacantionOffer}

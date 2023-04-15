@@ -1,6 +1,6 @@
 
 <template>
-  <div class="window_border">
+  <div class="window_border" @click="$router.push(`/VacationTest/${1}`)">
     <p class="offer_title">
       Питон разработчик
     </p>
@@ -28,7 +28,7 @@ export default{
   name: "vacantionOffer",
   components: {StackIcon}
 }
-import StackIcon from "@/components/StackIcon";
+import StackIcon from "@/components/Vacations/StackIcon";
 </script>
 
 <style scoped>
