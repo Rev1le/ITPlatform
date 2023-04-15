@@ -33,8 +33,20 @@ module default {
         required link owner -> meta::Person;
     }
 
-    type
-
     type Employer extending meta::Person {
+        link recruiter := .<employer[is Recruiter];
+    }
+
+    type Vacancy extending meta::Created {
+        required property name -> str;
+        required property about -> str;
+        required property skills -> array<str>;
+        required property company -> str;
+        property salary -> float32;
+    }
+
+    type Recruiter extending meta::Created {
+        required link employer -> Employer;
+        multi link vacancies -> Vacancy;
     }
 }
