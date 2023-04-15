@@ -1,10 +1,11 @@
 <template>
   <div class="nav_btn_bottom">
+    
     <button
       v-for="(btn, index) in btns"
       :key="index"
       @click="$router.push(btn.url)"
-      :class="[btn.url === '/vacation' ? 'nav_btn_vac' : 'nav_btn']"
+      :class="[this.$route.path === btn.url ? 'nav_btn_vac' : 'nav_btn']"
     >
       {{ btn.name }}
     </button>
@@ -27,7 +28,7 @@ export default {
 
 <style scoped>
 .nav_btn_bottom{
-    padding: 0 25%;
+    padding: 2% 25%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

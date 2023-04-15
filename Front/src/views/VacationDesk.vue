@@ -1,30 +1,43 @@
 <template>
-  <div class="vacations-wrap">
-  <div class="vacations-search">
+  <div class="wrap-page">
+    <!-- <div class="vacations-search">  -->
       
+      <InputSearch :value="searchQuery"
+      @update:value="setSearchQuery" ></InputSearch>
+    <!-- </div> -->
+    <div class="vacation_desk">
+      <VacantionsList :vacations="sortedAndSearchedVacantions" />
+    </div>
   </div>
- <div class="vacation_desk">
-   <VacantionsList/>
- </div>
-</div>
 </template>
 
 <script>
-
 import VacantionsList from "@/components/Vacations/VacantionsList.vue";
-
-
-import NavBar from "@/App";
-import vacantionOffer from "@/components/Vacations/vacantionOffer";
+import InputSearch from "@/components/InputSearch.vue";
+import {mapState,  mapGetters, mapMutations  } from "vuex";
 export default {
   name: "Vacation",
-  components: {VacantionsList}
-}
+  components: { VacantionsList, InputSearch },
+  methods: {
+    ...mapMutations({
+ 
+      setSearchQuery: "vacantionStore/setSearchQuery",
+    
+    }),
+  },
+  computed: {
+    ...mapState({
+      searchQuery: (state) => state.vacantionStore.searchQuery,
+    }),
+    ...mapGetters({
+      // sortReports: "vacantionStore/sortReports",
+      sortedAndSearchedVacantions: "vacantionStore/sortedAndSearchedVacantions",
+    }),
+  },
+};
 </script>
 
 <style scoped>
-  .vacations-wrap{
-    padding: 50px var(--pad) 0;
-    display: flex;
-  }
+
+
 </style>

@@ -51,7 +51,8 @@ export default{
   /* width: 1152px; */
   /* height: 362px; */
   /* padding-left: 59px; */
-  padding: 30px 55px;
+  /* padding: 30px 55px; */
+  padding: 2% 5%;
   background: rgba(234, 239, 246, 0.22);
   border-radius: 10px;
   margin-bottom: 30px;
@@ -66,7 +67,7 @@ export default{
 }
 .company_Name{
   /* font-family: "SB Sans Display", sans-serif; */
-  font-size: 30px;
+  font-size: 28px;
   color: rgba(33, 160, 56, 0.8);
 
 }
@@ -74,8 +75,11 @@ export default{
   display: flex;
   justify-content:space-between;
   /* gap: 10px; */
-  width: 35%;
-  min-width: 310px;
+  /* width: 55%; */
+  /* min-width: 310px; */
+  word-break: break-word;
+  flex-wrap: wrap;
+  align-items: center;
   padding-top: 10px;
 
 }
@@ -86,7 +90,7 @@ export default{
   font-size: 20px;
   line-height: 110%;
   color: rgba(0, 0, 0, 0.3);
-  padding-top: 10px;
+  /* padding-top: 10px; */
 
 
 }

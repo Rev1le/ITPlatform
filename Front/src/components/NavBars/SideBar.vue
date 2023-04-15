@@ -1,10 +1,10 @@
 <template>
   <transition name="v-sidebar">
     <div class="sidebar" @click.stop="hideSideBar" v-if="show">
-      <div @click.stop class="menu">
-        <button id="closeSideBar" @click="hideSideBar">X</button>
+      <div  class="menu">
+        <button id="closeSideBar" @click.stop="hideSideBar">X</button>
         <div class="menuItem">
-          <NavBtns class="navBtns"></NavBtns>
+          <NavBtns @click.stop="hideSideBar" class="navBtns"></NavBtns>
         </div>
       </div>
     </div>

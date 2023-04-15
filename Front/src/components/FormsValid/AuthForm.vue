@@ -1,6 +1,6 @@
 <template>
     <FormInput>
-        <h1>Регистрация</h1>
+        <h1>Вход</h1>
         <p class="errors" v-if="errors.length">
             Пожалуйста, выполните следующие требования:
             <ul >
