@@ -1,20 +1,25 @@
 <template>
+  <div class="vacations-wrap">
+  <div class="vacations-sort">
+
+  </div>
  <div class="vacation_desk">
-   <vacantionOffer/>
-   <vacantion-offer/>
-   <vacantion-offer/>
+   <VacantionsList/>
  </div>
+</div>
 </template>
 
 <script>
-import NavBar from "@/App";
-import vacantionOffer from "@/components/vacantionOffer";
+import VacantionsList from "@/components/VacantionsList.vue";
 export default {
   name: "Vacation",
-  components: {NavBar,vacantionOffer}
+  components: {VacantionsList}
 }
 </script>
 
 <style scoped>
-
+  .vacations-wrap{
+    padding: 50px var(--pad) 0;
+    display: flex;
+  }
 </style>

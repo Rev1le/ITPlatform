@@ -82,7 +82,7 @@ background-image: linear-gradient(to top right,  #0188CE, #43E3B5);
   margin-left: auto;
 }
 .nav_text{
-  padding: 0 10%;
+  padding: 0 var(--pad);
   margin-top:50px;
   display: flex;
   flex-direction: column;
@@ -101,7 +101,7 @@ background-image: linear-gradient(to top right,  #0188CE, #43E3B5);
   width: 100vw; */
   z-index: 10;
   display: flex;
-  padding: 0 10% 0 10%;
+  padding: 0 var(--pad) 0 var(--pad);
   align-items: center;
   height: 100px;
   align-items: center;

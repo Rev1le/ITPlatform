@@ -11,5 +11,6 @@ export default createStore({
   },
   modules: {
     userStore:userStore,
+    
   }
 })

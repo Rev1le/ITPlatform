@@ -5,14 +5,6 @@
         <button id="closeSideBar" @click="hideSideBar">X</button>
         <div class="menuItem">
           <NavBtns class="navBtns"></NavBtns>
-
-          <!-- <button style="margin-top: 55px">
-            Здесь могла быть ваша копка навигации
-          </button>
-          <button>Бесполезная кнопка</button>
-          <div
-            style="width: 100%; display: flex; justify-content: center"
-          ></div> -->
         </div>
       </div>
     </div>

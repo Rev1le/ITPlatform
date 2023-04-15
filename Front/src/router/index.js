@@ -26,6 +26,7 @@ const routes = [
     path: '/vacation',
     name: 'Vacation',
     component: Vacation,
+    
     meta: { transition: 'slide-right' },
   }
 ]

@@ -2,43 +2,60 @@
 <template>
   <div class="window_border">
     <p class="offer_title">
-      Питон разработчик
+      <!-- Питон разработчик -->
+      {{ vacation.name }}
     </p>
     <div class="information_string">
       <b class="company_Name">
         Сбер
       </b>
       <b class="salary">
-        Зарплата договорная
+        <!-- Зарплата договорная -->
+        {{ vacation.salary }}
       </b>
     </div>
     <div class="offer_text">
-      Грустный очень нудый текст зачем он нужен воот Да кто это такой ваш цсс зачем я тут сижу на хакатоне душно уши болят
+      {{ vacation.desription }}
+      <!-- Грустный очень нудый текст зачем он нужен воот Да кто это такой ваш цсс зачем я тут сижу на хакатоне душно уши болят -->
+    {{  }}
     </div>
-    <div class="stack_ico">
-      <StackIcon stack-name="Биба"/>
-      <StackIcon stack-name="SQL"/>
+    <div class="stack_icons">
+      <!-- <StackIcon stack-name="Биба"/>
+      <StackIcon stack-name="SQL"/> -->
+      <StackIcon v-for="(name, index) in vacation.skills" :key="index" :stack-name="name"></StackIcon>
     </div>
   </div>
 </template>
 
 <script>
-
+import StackIcon from "@/components/StackIcon";
 export default{
   name: "vacantionOffer",
-  components: {StackIcon}
+  components: {StackIcon},
+  
+  props: {
+    vacation:{
+      // name: "Питон разработчик",
+      // salary: "Зарплата договорная",
+      // desription: "Требуется Python-разработчик для работы в компании. Кандидат должен иметь опыт работы с языком программирования Python и знание основных библиотек и фреймворков. Основные обязанности включают разработку и поддержку программного обеспечения на Python, написание и отладку кода, тестирование и оптимизацию производительности.",
+      // skills:  ["Биба", "боба", "python"],
+    }
+  }
 }
-import StackIcon from "@/components/StackIcon";
+
+
 </script>
 
 <style scoped>
 .window_border{
-  width: 1152px;
-  height: 362px;
-  padding-left: 59px;
+  /* width: 1152px; */
+  /* height: 362px; */
+  /* padding-left: 59px; */
+  padding: 30px 55px;
   background: rgba(234, 239, 246, 0.22);
   border-radius: 10px;
   margin-bottom: 30px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 
 }
 .offer_title{
@@ -48,20 +65,22 @@ import StackIcon from "@/components/StackIcon";
   padding-top: 32px;
 }
 .company_Name{
-  font-family: "SB Sans Display", sans-serif;
-  font-size: 29.67px;
+  /* font-family: "SB Sans Display", sans-serif; */
+  font-size: 30px;
   color: rgba(33, 160, 56, 0.8);
 
 }
 .information_string{
   display: flex;
   justify-content:space-between;
-  padding-right: 650px;
+  /* gap: 10px; */
+  width: 35%;
+  min-width: 310px;
   padding-top: 10px;
 
 }
 .salary{
-  font-family: 'SB Sans Display', sans-serif;
+  /* font-family: 'SB Sans Display', sans-serif; */
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
@@ -79,11 +98,12 @@ import StackIcon from "@/components/StackIcon";
   line-height: 110%;
   color: #3E3D4B;
   padding-top: 10px;
-  height: 152px;
+  /* height: 152px; */
 }
-.stack_ico{
+.stack_icons{
   display: flex;
-  margin-right: 30px;
-
+  margin:30px 30px 0 0;
+  flex-wrap: wrap;
+  /* margin-right: 30px; */
 }
 </style>

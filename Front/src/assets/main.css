@@ -8,6 +8,7 @@
     --main-color: #5989e9;
     --color-bg:white;
     font-family: "SB Sans Text", sans-serif;
+    --pad: 10%;
 }
 
 button{
@@ -27,3 +28,9 @@ body{
     color:white;
     margin-left: 40px;
   } */
+
+  @media (max-width: 900px) {
+    *,html,body {
+        --pad: 2%
+    }
+}  
