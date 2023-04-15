@@ -69,8 +69,12 @@ module default {
         multi link tests -> TaskCodeTest;
     }
 
-    type TaskBlock extending meta::Task {
+    type TaskBlock extending meta::Created {
         required property name -> str;
-        required property difficulty -> int;
+        required property difficulty -> int16;
+        required property description -> str;
+        multi link questions -> TaskQuestion;
+        multi link codes -> TaskCode;
+        multi link completed -> Worker;
     }
 }
