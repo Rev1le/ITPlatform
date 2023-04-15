@@ -1,11 +1,16 @@
+import asyncio
 from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
+from starlette.background import BackgroundTasks
 
 from app.api.deps import check_auth_worker_token
 from app.core.database import edgedb_client
+from app.queries.complete_task_block_async_edgeql import complete_task_block
+from app.queries.fail_task_block_async_edgeql import fail_task_block
+from app.queries.get_answers_async_edgeql import get_answers
 from app.queries.get_task_block_async_edgeql import GetTaskBlockResult, get_task_block
 from app.queries.get_task_block_challenges_async_edgeql import (
     GetTaskBlockChallengesResult,
@@ -66,6 +71,53 @@ async def task_block_challenges(
     return result
 
 
+async def check_answers(
+    task_block_id: UUID, answers: Answers, worker: GetWorkerByTokenResult
+):
+    right_answers = await get_answers(edgedb_client, task_block_id=task_block_id)
+    question_answers = {i.id: i.answer for i in answers.questions}
+    code_answers = {i.id: i.answer for i in answers.codes}
+
+    right_answers_count = 0
+    right_codes_count = 0
+
+    for i in right_answers.questions:
+        worker_answer = question_answers[i.id]
+        if i.right_answer == worker_answer:
+            right_answers_count += 1
+
+    for i in right_answers.codes:
+        successful_test_count = 0
+        worker_answer = code_answers[i.id]
+        cmd = f'py -c "{worker_answer}"'
+        for test in i.tests:
+            proc = await asyncio.create_subprocess_exec(
+                cmd, stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE
+            )
+            await proc.stdin.write(test.input.encode())
+            response = await proc.stdout.readline()
+            if response == test.output:
+                successful_test_count += 1
+        if successful_test_count == len(i.tests):
+            right_codes_count += 1
+
+    if right_answers_count == len(right_answers.questions) and right_codes_count == len(
+        right_answers.codes
+    ):
+        await complete_task_block(
+            edgedb_client, task_block_id=task_block_id, user_id=worker.id
+        )
+    else:
+        await fail_task_block(
+            edgedb_client, task_block_id=task_block_id, user_id=worker.id
+        )
+
+
 @router.post("/{id}")
-async def send_answers(answers: Answers):
-    pass
+async def send_answers(
+    id: UUID,
+    answers: Answers,
+    worker: Annotated[GetWorkerByTokenResult, Depends(check_auth_worker_token)],
+    background_tasks: BackgroundTasks,
+):
+    background_tasks.add_task(check_answers, id, answers, worker)
