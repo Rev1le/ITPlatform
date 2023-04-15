@@ -2,6 +2,7 @@ import hashlib
 import secrets
 from datetime import datetime, timezone
 
+import edgedb
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
