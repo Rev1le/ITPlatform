@@ -52,7 +52,7 @@ async def auth_worker(login: Login) -> LoginAccess | JSONResponse:
     )
 
     if worker is None:
-        return JSONResponse(status_code=404, content={"message": "Ivalid login data"})
+        return JSONResponse(status_code=404, content={"message": "Invalid login data"})
 
     auth_token = secrets.token_urlsafe(32)
 
