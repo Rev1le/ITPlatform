@@ -4,7 +4,6 @@
 
 from __future__ import annotations
 import dataclasses
-import datetime
 import edgedb
 import uuid
 
@@ -27,9 +26,6 @@ async def update_worker(
     executor: edgedb.AsyncIOExecutor,
     *,
     id: uuid.UUID,
-    birthday: datetime.datetime | None,
-    hash: str | None,
-    email: str | None,
     bio: str | None,
     photo: str | None,
     resume: str | None,
@@ -40,9 +36,6 @@ async def update_worker(
         update Worker
         filter .id = <uuid>$id
         set {
-            birthday := <optional datetime>$birthday ?? .birthday,
-            hash := <optional str>$hash ?? .hash,
-            email := <optional str>$email ?? .email,
             bio := <optional str>$bio ?? .bio,
             photo := <optional str>$photo ?? .photo,
             resume := <optional str>$resume ?? .resume,
@@ -50,9 +43,6 @@ async def update_worker(
         }\
         """,
         id=id,
-        birthday=birthday,
-        hash=hash,
-        email=email,
         bio=bio,
         photo=photo,
         resume=resume,
