@@ -3,18 +3,15 @@
 
 
 from __future__ import annotations
-
 import dataclasses
-import uuid
-
 import edgedb
+import uuid
 
 
 class NoPydanticValidation:
     @classmethod
     def __get_validators__(cls):
         from pydantic.dataclasses import dataclass as pydantic_dataclass
-
         pydantic_dataclass(cls)
         cls.__pydantic_model__.__get_validators__ = lambda: []
         return []
@@ -33,7 +30,7 @@ async def create_vacancy(
     about: str,
     skills: list[str],
     company: str,
-    salary: float | None,
+    salary: str | None,
     required_task_block_ids: list[uuid.UUID],
 ) -> CreateVacancyResult:
     return await executor.query_single(
@@ -41,10 +38,10 @@ async def create_vacancy(
         insert Vacancy {
             author := (select Employer filter .id = <uuid>$employer_id),
             name := <str>$name,
-            about := <str>$about,
+            description := <str>$about,
             skills := <array<str>>$skills,
             company := <str>$company,
-            salary := <optional float32>$salary,
+            salary := <optional str>$salary,
             required_task_blocks := distinct (for x in array_unpack(<array<uuid>>$required_task_block_ids) union (
                select TaskBlock
                filter .id = <uuid>x

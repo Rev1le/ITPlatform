@@ -1,6 +1,6 @@
 select Vacancy {
     name,
-    about,
+    description,
     skills,
     company,
     salary,

@@ -45,10 +45,10 @@ module default {
     type Vacancy extending meta::Created {
         required link author -> Employer;
         required property name -> str;
-        required property about -> str;
+        required property description -> str;
         required property skills -> array<str>;
         required property company -> str;
-        property salary -> float32;
+        required property salary -> str;
         multi link required_task_blocks -> TaskBlock;
     }
 

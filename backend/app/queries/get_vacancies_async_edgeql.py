@@ -3,18 +3,15 @@
 
 
 from __future__ import annotations
-
 import dataclasses
-import uuid
-
 import edgedb
+import uuid
 
 
 class NoPydanticValidation:
     @classmethod
     def __get_validators__(cls):
         from pydantic.dataclasses import dataclass as pydantic_dataclass
-
         pydantic_dataclass(cls)
         cls.__pydantic_model__.__get_validators__ = lambda: []
         return []
@@ -24,10 +21,9 @@ class NoPydanticValidation:
 class GetVacanciesResult(NoPydanticValidation):
     id: uuid.UUID
     name: str
-    about: str
+    description: str
     skills: list[str]
-    company: str
-    salary: float | None
+    salary: str
 
 
 async def get_vacancies(
@@ -37,9 +33,8 @@ async def get_vacancies(
         """\
         select Vacancy {
             name,
-            about,
+            description,
             skills,
-            company,
             salary
         }\
         """,

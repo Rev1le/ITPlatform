@@ -4,10 +4,11 @@ from uuid import UUID
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.api.deps import AuthEmplayer, check_auth_worker_token
+from app.api.deps import AuthEmplayer, check_auth_worker_token, check_auth_employer_token
 from app.core.database import edgedb_client
 from app.queries.create_vacancy_async_edgeql import CreateVacancyResult
 from app.queries.create_vacancy_async_edgeql import create_vacancy as db_create_vacancy
+from app.queries.get_employer_by_token_async_edgeql import GetEmployerByTokenResult
 from app.queries.get_vacancies_async_edgeql import GetVacanciesResult, get_vacancies
 from app.queries.get_vacancy_async_edgeql import GetVacancyResult, get_vacancy
 from app.queries.get_worker_by_token_async_edgeql import GetWorkerByTokenResult
@@ -32,7 +33,7 @@ async def get_all_vacancies() -> list[GetVacanciesResult]:
 
 @router.post("/")
 async def create_vacancy(
-    employer: AuthEmplayer, vacancy_data: VacancyData
+    employer: Annotated[GetEmployerByTokenResult, Depends(check_auth_employer_token)], vacancy_data: VacancyData
 ) -> CreateVacancyResult:
     return await db_create_vacancy(
         edgedb_client,

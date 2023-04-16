@@ -1,4 +1,4 @@
-CREATE MIGRATION m1a4daap3hhylecysslfmaatynfknhnswioi5t3rkvhrw3c4s3qosq
+CREATE MIGRATION m1h2zuwsmtbyufw3kn2lfxafkewi33hiifsldurwlu7fd3owqgot7q
     ONTO initial
 {
   CREATE MODULE meta IF NOT EXISTS;
@@ -54,10 +54,10 @@ CREATE MIGRATION m1a4daap3hhylecysslfmaatynfknhnswioi5t3rkvhrw3c4s3qosq
   };
   CREATE TYPE default::Vacancy EXTENDING meta::Created {
       CREATE REQUIRED LINK author -> default::Employer;
-      CREATE REQUIRED PROPERTY about -> std::str;
       CREATE REQUIRED PROPERTY company -> std::str;
+      CREATE REQUIRED PROPERTY description -> std::str;
       CREATE REQUIRED PROPERTY name -> std::str;
-      CREATE PROPERTY salary -> std::float32;
+      CREATE REQUIRED PROPERTY salary -> std::str;
       CREATE REQUIRED PROPERTY skills -> array<std::str>;
   };
   ALTER TYPE default::Employer {
