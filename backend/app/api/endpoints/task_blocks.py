@@ -91,12 +91,11 @@ async def check_answers(
         worker_answer = code_answers[i.id]
         cmd = f'py -c "{worker_answer}"'
         for test in i.tests:
-            proc = await asyncio.create_subprocess_exec(
+            proc = await asyncio.create_subprocess_shell(
                 cmd, stdin=asyncio.subprocess.PIPE, stdout=asyncio.subprocess.PIPE
             )
-            await proc.stdin.write(test.input.encode())
-            response = await proc.stdout.readline()
-            if response == test.output:
+            stdout, _ = await proc.communicate(input=test.input.encode())
+            if stdout.decode().strip() == test.output:
                 successful_test_count += 1
         if successful_test_count == len(i.tests):
             right_codes_count += 1
@@ -121,3 +120,4 @@ async def send_answers(
     background_tasks: BackgroundTasks,
 ):
     background_tasks.add_task(check_answers, id, answers, worker)
+    return {"status": "ok"}

@@ -38,7 +38,10 @@ async def complete_task_block(
         set {
             completed := distinct(.completed union (
                 select Worker filter .id = <uuid>$user_id
-            ))
+            )),
+            failed := (
+                select .failed filter .id != <uuid>$user_id
+            )
         }\
         """,
         task_block_id=task_block_id,

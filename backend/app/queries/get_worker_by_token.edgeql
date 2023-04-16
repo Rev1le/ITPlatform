@@ -1,3 +1,3 @@
 select Worker {id, name, photo, birthday, bio, hash, email}
-filter .tokens.owner.id = <uuid>$user_id
+filter .tokens.value = <str>$token
 limit 1

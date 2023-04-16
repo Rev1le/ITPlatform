@@ -3,6 +3,7 @@ from typing import Annotated, TypeVar
 from fastapi import Depends, HTTPException
 from fastapi.security import APIKeyHeader
 
+from app.core.database import edgedb_client
 from app.queries.get_employer_by_token_async_edgeql import (
     GetEmployerByTokenResult,
     get_employer_by_token,
@@ -21,7 +22,7 @@ AuthEmplayer = TypeVar(
 async def check_auth_employer_token(
     token: Annotated[str, Depends(token_header)]
 ) -> GetEmployerByTokenResult:
-    employer = await get_employer_by_token(token)
+    employer = await get_employer_by_token(edgedb_client, token=token)
 
     if employer is None:
         raise HTTPException(
@@ -34,7 +35,7 @@ async def check_auth_employer_token(
 async def check_auth_worker_token(
     token: Annotated[str, Depends(token_header)]
 ) -> GetWorkerByTokenResult:
-    worker = await get_worker_by_token(token)
+    worker = await get_worker_by_token(edgedb_client, token=token)
 
     if worker is None:
         raise HTTPException(

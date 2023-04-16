@@ -35,13 +35,13 @@ class GetEmployerByTokenResult(NoPydanticValidation):
 async def get_employer_by_token(
     executor: edgedb.AsyncIOExecutor,
     *,
-    user_id: uuid.UUID,
+    token: str,
 ) -> GetEmployerByTokenResult | None:
     return await executor.query_single(
         """\
         select Employer {id, name, photo, birthday, bio, hash, email}
-        filter .tokens.owner.id = <uuid>$user_id
+        filter .tokens.value = <str>$token
         limit 1\
         """,
-        user_id=user_id,
+        token=token,
     )
