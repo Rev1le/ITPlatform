@@ -14,16 +14,23 @@
 <script>
 import VacantionsList from "@/components/Vacations/VacantionsList.vue";
 import InputSearch from "@/components/InputSearch.vue";
-import {mapState,  mapGetters, mapMutations  } from "vuex";
+import {mapState, mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   name: "Vacation",
   components: { VacantionsList, InputSearch },
   methods: {
     ...mapMutations({
- 
+
       setSearchQuery: "vacantionStore/setSearchQuery",
-    
+
     }),
+    ...mapActions({
+      reqVacantions: "vacantionStore/reqVacantions",
+
+    }),
+  },
+  mounted() {
+    this.reqVacantions();
   },
   computed: {
     ...mapState({

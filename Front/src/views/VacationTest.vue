@@ -3,20 +3,21 @@
     <workRequirements/>
     <div class="window_border">
       <p class="offer_title">
-        Питон разработчик
+        {{ vacantion.name }}
         <button @click="$router.go(-1)" ><img src="@/assets/close.png" alt="Назад" class="close_But"/></button>
       </p>
       <div class="information_string">
         <b class="company_Name">
-          Сбер
+          {{company}}
         </b>
         <b class="salary">
-          Зарплата договорная
+          {{ vacantion.salary }}
         </b>
       </div>
       <div class="offer_text">
-        Грустный очень нудый текст зачем он нужен воот Да кто это такой ваш цсс зачем я тут сижу на хакатоне душно уши
-        болят ЫАЫаыа ыа ЫАЫАЫА Ы АЫАЫАЫАЫАЫАЫаааааа ЫЫЫЫЫЫЫЫ ааа ВЫаываыаук ывацуыуавыавыавыцу куцу ц
+        {{
+          vacantion.description
+        }}
       </div>
       <div class="stack_ico">
         <StackIcon stack-name="Биба"/>
@@ -25,7 +26,7 @@
       <div class="other_requirements">
         <p class="zag">Требования </p>
         <ul>
-          <li v-for="(item, index) in requirements" :key="index" class="list"> - {{item}}</li>
+          <li v-for="(item, index) in skills" :key="index" class="list"> - {{item}}</li>
         </ul>
         <p class="zag" > Задания </p>
       </div>
@@ -38,11 +39,30 @@
 import StackIcon from "@/components/Vacations/StackIcon";
 import workRequirements from "@/components/Vacations/workRequirements";
 import Tasks from "@/components/Vacations/Tasks";
+import {mapActions} from "vuex";
 
 export default {
   data(){
     return {
-      requirements: ["nim", "react", "vue", "sql"]
+      vacantion: {
+
+      },
+
+      // company:'',
+      // salary:'',
+      // vacationName: '',
+      // description: '',
+      // skills: ["nim", "react", "vue", "sql"],
+      methods: {
+        ...mapActions({
+          reqVacantionById: "vacantionStore/reqVacantionById",
+
+        }),
+      },
+     async mounted() {
+        this.vacantion = await this.reqVacantionById(this.$route.params.id)
+
+      }
     }
   },
   name: "Vacation",

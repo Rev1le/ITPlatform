@@ -1,6 +1,6 @@
 
 <template>
-  <div class="window_border" @click="$router.push(`/VacationTest/${1}`)">
+  <div class="window_border" @click="debug">
     <p class="offer_title">
       <!-- Питон разработчик -->
       {{ vacation.name }}
@@ -29,10 +29,13 @@
 
 <script>
 import StackIcon from "@/components/Vacations/StackIcon";
+import vacation from "@/views/Vacation";
 export default{
   name: "vacantionOffer",
   components: {StackIcon},
-  
+  methods: {
+    debug(){console.log(this.vacation.id)}
+  },
   props: {
     vacation:{
       // name: "Питон разработчик",
