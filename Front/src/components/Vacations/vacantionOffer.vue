@@ -1,6 +1,6 @@
 
 <template>
-  <div class="window_border" @click="debug">
+  <div class="window_border" @click="$router.push(`VacationTest/${vacation.id}`)">
     <p class="offer_title">
       <!-- Питон разработчик -->
       {{ vacation.name }}

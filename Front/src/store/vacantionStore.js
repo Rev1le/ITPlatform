@@ -56,7 +56,7 @@ export const vacantionStore = {
     async reqVacantions({ commit }, entr) {
       try {
         await axios
-          .post("http://localhost:5000/api/user/login", entr)
+          .get("http://localhost:8000/api/vacancy/all", entr)
           .then((response) => {
             if (response.status === 200) {
               commit("setVacantions", response.data);
