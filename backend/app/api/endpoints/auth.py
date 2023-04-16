@@ -43,7 +43,7 @@ async def auth_employer(login: Login) -> LoginAccess:
 
 @router.post("/worker")
 async def auth_worker(login: Login) -> LoginAccess:
-    password_hash = hashlib.sha256(login.password).hexdigest()
+    password_hash = hashlib.sha256(login.password.encode()).hexdigest()
 
     worker = await get_worker_by_hash(
         edgedb_client, hash=password_hash, email=login.email

@@ -59,7 +59,7 @@ answer = """
   "codes": [
     {
       "id": "3a41ee84-dbfa-11ed-933e-932746b2012e",
-      "lang": Python",
+      "lang": "Python",
       "answer": "x, y = map(int, input().split()); print(x+y)"
     }
   ]
