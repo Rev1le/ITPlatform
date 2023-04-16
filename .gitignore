@@ -113,7 +113,7 @@ web_modules/
 __pycache__/
 *.py[cod]
 *$py.class
-
+*._
 # C extensions
 *.so
 
@@ -192,6 +192,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+*/.DS_Store
+._
 .env
 .venv
 env/

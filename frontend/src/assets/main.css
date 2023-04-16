@@ -1,7 +1,77 @@
-*,html,body{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    --main-color: #5989e9;
-    --color-bg:white;
+@import url(//db.onlinewebfonts.com/c/c68e21ad1a10803b1ef491fd0392b067?family=SB+Sans+Text);
+@import url(//db.onlinewebfonts.com/c/2d130488c7306881cf236b40ea2a1020?family=SB+Sans+Display+Semibold);
+
+*,
+html,
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  --main-color: #5989e9;
+  --color-bg: white;
+  font-family: "SB Sans Text", sans-serif;
+  --pad: 10%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: inherit;
+}
+
+.input-form {
+  outline: none;
+  border: 1px solid rgb(167, 167, 167);
+  padding: 10px;
+  border-radius: 5px;
+}
+.button-form {
+  background: #21a038;
+  border-radius: 4px;
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+}
+.errors li {
+  list-style-type: none;
+}
+.errors {
+  text-align: left;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.toForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 100px);
+}
+
+.wrap-page {
+  padding: 50px var(--pad) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* justify-content: center; */
+}
+
+/* body{
+    padding: 0 10%;
+} */
+/* .auth_btn {
+  
+    border: none;
+    background: none;
+    font-size: 20px;
+    color:white;
+    margin-left: 40px;
+  } */
+
+@media (max-width: 900px) {
+  *,
+  html,
+  body {
+    --pad: 2%;
+  }
 }
