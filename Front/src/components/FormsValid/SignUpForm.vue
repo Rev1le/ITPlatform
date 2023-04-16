@@ -7,10 +7,10 @@
             <li v-for="error in errors" :key="error">{{ error }}</li>
             </ul>
         </p>
-        <input class="input-form" type="text" placeholder="ФИО" v-model="SignUp.FIO" >
-        <input class="input-form" type="date"  v-model="SignUp.birth">
-        <input class="input-form" type="text" placeholder="Электронная почта" v-model="SignUp.mail">
-        <input class="input-form" type="text" placeholder="Пароль" v-model="SignUp.pass">
+        <input class="input-form" type="text" placeholder="ФИО" v-model="SignUp.name" >
+        <input class="input-form" type="date"  v-model="SignUp.birthday">
+        <input class="input-form" type="text" placeholder="Электронная почта" v-model="SignUp.email">
+        <input class="input-form" type="text" placeholder="Пароль" v-model="SignUp.password">
         <button class="button-form" @click="toParent"> Зарегистрироваться </button>
     </FormInput>
 </template>
@@ -26,24 +26,24 @@ export default {
     data(){
         return{
             SignUp:{
-                "FIO":"",
-                "birth":"",
-                "mail":"",
-                "pass":""
+                "name":"",
+                "birthday":"",
+                "email":"",
+                "password":""
             },
             errors:[],
         }
     },
     methods: {
         toParent(){
-            if(this.SignUp.FIO && this.SignUp.birth && this.SignUp.mail && this.SignUp.pass) {
+            if(this.SignUp.name && this.SignUp.birthday && this.SignUp.email && this.SignUp.password) {
                 return this.$emit("toParent", this.SignUp);
             }
             this.errors = [];
-            if(!this.SignUp.FIO) this.errors.push("Заполните ФИО");
-            if(!this.SignUp.birth) this.errors.push("Заполните дату рождения");
-            if(!this.SignUp.mail) this.errors.push("Заполните почту");
-            if(!this.SignUp.pass) this.errors.push("Заполните пароль");
+            if(!this.SignUp.name) this.errors.push("Заполните ФИО");
+            if(!this.SignUp.birthday) this.errors.push("Заполните дату рождения");
+            if(!this.SignUp.email) this.errors.push("Заполните почту");
+            if(!this.SignUp.password) this.errors.push("Заполните пароль");
             
         }
     },

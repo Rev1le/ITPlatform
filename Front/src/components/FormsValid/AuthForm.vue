@@ -7,9 +7,9 @@
             <li v-for="error in errors" :key="error">{{ error }}</li>
             </ul>
         </p>
-        <input class="input-form" type="text" placeholder="Электронная почта" v-model="SignUp.mail">
-        <input class="input-form" type="text" placeholder="Пароль" v-model="SignUp.pass">
-        <button class="button-form" @click="toParent"> Зарегистрироваться </button>
+        <input class="input-form" type="text" placeholder="Электронная почта" v-model="SignUp.email">
+        <input class="input-form" type="password" placeholder="Пароль" v-model="SignUp.password">
+        <button class="button-form" @click="toParent"> Войти </button>
     </FormInput>
 </template>
 
@@ -24,21 +24,24 @@ export default {
     data(){
         return{
             SignUp:{
-                "mail":"",
-                "pass":""
+                "email":"",
+                "password":""
             },
             errors:[],
         }
     },
     methods: {
         toParent(){
-            if(this.SignUp.FIO && this.SignUp.birth && this.SignUp.mail && this.SignUp.pass) {
+            if(this.SignUp.email && this.SignUp.password) {
                 return this.$emit("toParent", this.SignUp);
             }
             this.errors = [];
 
-            if(!this.SignUp.mail) this.errors.push("Заполните почту");
-            if(!this.SignUp.pass) this.errors.push("Заполните пароль");
+            if(!this.SignUp.email) this.errors.push("Заполните почту");
+            if(!this.SignUp.password) this.errors.push("Заполните пароль");
+
+
+
             
         }
     },

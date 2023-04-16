@@ -3,7 +3,7 @@ export const userStore = {
   state: () => (
     {
     role:'', 
-    name:'jop',
+    name:'',
     user:'',
   }),
 

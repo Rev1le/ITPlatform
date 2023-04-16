@@ -4,6 +4,7 @@ import SignUpView from '../views/SignUpView.vue'
 import Vacation from "@/views/VacationDesk.vue";
 import VacationTest from "@/views/VacationTest";
 import TasksView from "@/views/TasksView"
+import Mentors from "@/views/MentorsView"
 import store from '../store/index.js'
 const routes = [
   {
@@ -28,6 +29,13 @@ const routes = [
     path: '/vacation',
     name: 'Vacation',
     component: Vacation,
+    
+    meta: { transition: 'slide-left', auth:true },
+  },
+  {
+    path: '/mentors',
+    name: 'Mentors',
+    component: Mentors,
     
     meta: { transition: 'slide-left', auth:true },
   },

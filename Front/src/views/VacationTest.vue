@@ -20,13 +20,12 @@
         }}
       </div>
       <div class="stack_ico">
-        <StackIcon stack-name="Биба"/>
-        <StackIcon stack-name="SQL"/>
+        <StackIcon v-for="(item, index) in vacantion.skills" :key="index" :stackName="item"/>
       </div>
       <div class="other_requirements">
         <p class="zag">Требования </p>
         <ul>
-          <li v-for="(item, index) in skills" :key="index" class="list"> - {{item}}</li>
+          <li v-for="(item, index) in vacantion.skills" :key="index" class="list"> - {{item}}</li>
         </ul>
         <p class="zag" > Задания </p>
       </div>
@@ -40,12 +39,13 @@ import StackIcon from "@/components/Vacations/StackIcon";
 import workRequirements from "@/components/Vacations/workRequirements";
 import Tasks from "@/components/Vacations/Tasks";
 import {mapActions} from "vuex";
+import axios from "axios";
 
 export default {
+
   data(){
     return {
       vacantion: {
-
       },
 
       // company:'',
@@ -53,19 +53,42 @@ export default {
       // vacationName: '',
       // description: '',
       // skills: ["nim", "react", "vue", "sql"],
-      methods: {
-        ...mapActions({
-          reqVacantionById: "vacantionStore/reqVacantionById",
-
-        }),
-      },
-     async mounted() {
-        this.vacantion = await this.reqVacantionById(this.$route.params.id)
-
-      }
+    
     }
   },
-  name: "Vacation",
+
+
+ methods: {
+      
+
+   async reqVacantionById(id) {
+      console.log('vhod1');
+
+      let config = {
+  headers: {
+    token: "MVIwoTovdTi6mM89opYoRMy5syGGeMTh5e1boOPSmXc",
+  }
+}
+      
+      try {
+        return await axios.get(`http://localhost:8000/api/vacancy/4ef20ed4-dbfc-11ed-ac82-b3ed2a357e40`, config);
+      } catch (e) {
+        console.log("eWe have http error", e);
+      }
+    },
+    
+ },
+   async mounted() {
+    console.log("Hi");
+      console.log(this.vacantion);
+      //console.log(await this.reqVacantionById(this.$route.params.id));
+      let response = await this.reqVacantionById(this.$route.params.id);
+        this.vacantion = response.data;
+
+
+        console.log("final", this.vacantion);
+      },
+  //name: "Vacation",
   components: {StackIcon, workRequirements, Tasks}
 }
 </script>

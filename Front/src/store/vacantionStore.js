@@ -84,6 +84,7 @@ export const vacantionStore = {
         }
     },
     async reqVacantionById(id) {
+      console.log('vhod1');
       try {
         await axios
             .get(`localhost:8000/api/vacancy/${id}`)
