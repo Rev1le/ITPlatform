@@ -1,33 +1,38 @@
 <template>
-  <div class="nav">
-  <div class="Navbar-vue">
-    <img class="nav_img" src="@/assets/sbertest.svg" alt="" />
-    <div v-if="width > 1100" class="navbar_btns">
-      <NavBtns :user="{ name: 'Рома', auth: true }"> </NavBtns>
+    
+    <div class="nav">     
+        
+        <div class="Navbar-vue">          
+            <button @click="$router.push('/')" class="nav_bar_logo">
+                <img src="@/assets/sbertest.svg" alt="" />
+            </button>
+            
+            <div v-if="width > 1100" class="navbar_btns">
+                <NavBarButtons :user="{ name: 'Рома', auth: true }"> </NavBarButtons>
+            </div>
+      
+            <div v-else class="navbar_btns_side">
+                <button @click="SideBar">☰</button>
+            </div>
+        </div>
+
+        <div class="nav_text" v-show="getName">
+            <span class="work">Работа для тех,<br> кто хочет</span>
+            <span class="work-more">Большего</span>
+            <MenuButtons></MenuButtons>
+        </div>
     </div>
-    <div v-else class="navbar_btns_side">
-      <button @click="SideBar">☰</button>
-    </div>
-  </div>
-  <div class="nav_text" v-show="getName">
-    <span class="work">Работа для тех,<br> кто хочет</span>
-    <!-- <br> -->
-    <span class="work-more">
-      Большего
-    </span>
-    <NavBtnBottom></NavBtnBottom>
-  </div>
-</div>
+
 </template>
 
 <script>
-import NavBtns from "./NavBtns";
-import NavBtnBottom from "./NavBtnBottom.vue";
+import NavBarButtons from "./NavBarButtons";
+import MenuButtons from "../Menu/MenuButtons.vue"; // Перенести в отдельный компонент
 import { mapGetters } from "vuex";
 export default {
   components: {
-    NavBtns,
-    NavBtnBottom,
+    NavBarButtons,
+    MenuButtons,
   },
   data() {
     return {
@@ -42,7 +47,10 @@ export default {
     SideBar() {
       // console.log("sss");
       this.$emit("showSideBar", true);
-    },
+      },
+      ImgButton() {
+          console.log("ЛОГО")
+      }
   },
   created() {
     window.addEventListener("resize", this.updateWidth);
@@ -77,8 +85,8 @@ background-image: linear-gradient(to top right,  #0188CE, #43E3B5);
   -webkit-background-clip: text;
 }
 
-.nav_img {
-  width: 20%;
+.nav_bar_logo {
+  width: 25%;
   min-width: 220px;
 }
 

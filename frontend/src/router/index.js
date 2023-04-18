@@ -5,12 +5,14 @@ import Vacation from "@/views/VacationDesk.vue";
 import VacationTest from "@/views/VacationTest";
 import TasksView from "@/views/TasksView"
 import Mentors from "@/views/MentorsView"
+import HomeView from "@/views/HomeView"
 import store from '../store/index.js'
+
 const routes = [
   {
-    path: '',
-    name: 'default',
-    component: AuthView,
+    path: '/',
+    name: 'Home',
+    component: HomeView,
     meta: { transition: 'slide-left', auth:false },
   },
   {
@@ -29,7 +31,6 @@ const routes = [
     path: '/vacation',
     name: 'Vacation',
     component: Vacation,
-    
     meta: { transition: 'slide-left', auth:true },
   },
   {
@@ -55,18 +56,17 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+    history: createWebHistory(process.env.BASE_URL),
+    routes
 })
 
 router.beforeEach(async (to, from, next) => {
-  if(!store._modules.root._children.userStore.state.name && to.meta.auth){
-    next({name:'Auth'});
-  }
-  
-  else{
-    next();
-  }
-
+    if (!store._modules.root._children.userStore.state.name && to.meta.auth) {
+        next({ name: 'Auth' });
+    }
+    else {
+        next();
+    }
 })
+
 export default router
