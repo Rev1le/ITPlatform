@@ -29,16 +29,18 @@ router = APIRouter()
 
 @router.post("/employer")
 async def registration_employer(registration_data: Registration) -> RegistrationAccess:
+
     birthday = datetime.strptime(registration_data.birthday, "%d-%m-%Y").replace(
         tzinfo=timezone.utc
     )
+    password_hash = hashlib.sha256(registration_data.password.encode()).hexdigest()
 
     try:
         employer = await create_employer(
             edgedb_client,
             name=registration_data.name,
             birthday=birthday,
-            hash=hashlib.sha256(registration_data.password.encode()).hexdigest(),
+            hash=password_hash,
             email=registration_data.email,
         )
     except edgedb.errors.ConstraintViolationError:

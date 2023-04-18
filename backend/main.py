@@ -7,6 +7,8 @@ from app.api.api import api_router
 
 asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
 
+print("Start app ...")
+
 app = FastAPI(title="Title", openapi_url="/api/openapi.json")
 
 app.add_middleware(

@@ -7,9 +7,12 @@ from pydantic import BaseModel
 from app.core.database import edgedb_client
 from app.queries.create_employer_token_async_edgeql import create_employer_token
 from app.queries.create_worker_token_async_edgeql import create_worker_token
-from app.queries.get_employer_by_hash_async_edgeql import get_employer_by_hash
-from app.queries.get_worker_by_hash_async_edgeql import get_worker_by_hash
+from app.queries.get_employer_by_hash_async_edgeql import get_employer_by_hash, GetEmployerByHashResult
+from app.queries.get_worker_by_hash_async_edgeql import get_worker_by_hash, GetWorkerByHashResult
 
+class AuthData(BaseModel):
+    email: str
+    password: str
 
 class Login(BaseModel):
     email: str
@@ -17,43 +20,53 @@ class Login(BaseModel):
 
 
 class LoginAccess(BaseModel):
+    name: str
     token: str
 
 
 router = APIRouter()
 
 
-@router.post("/employer")
-async def auth_employer(login: Login) -> LoginAccess:
-    password_hash = hashlib.sha256(login.password.encode()).hexdigest()
+@router.post("/")
+async def auth_user(auth_data: AuthData) -> LoginAccess:
+    password_hash = hashlib.sha256(auth_data.password.encode()).hexdigest()
+
+    worker_login_access = await auth_worker(password_hash=password_hash, auth_data=auth_data)
+    if worker_login_access is not None:
+        return worker_login_access
+
+    employer_login_access = await auth_employer(password_hash=password_hash, auth_data=auth_data)
+    if employer_login_access is not None:
+        return employer_login_access
+
+    raise HTTPException(status_code=404, detail={"message": "Invalid login data"})
+
+
+async def auth_employer(password_hash: str, auth_data: AuthData) -> LoginAccess | None:
 
     employer = await get_employer_by_hash(
-        edgedb_client, hash=password_hash, email=login.email
+        edgedb_client, hash=password_hash, email=auth_data.email
     )
 
     if employer is None:
-        raise HTTPException(status_code=404, detail={"message": "Invalid login data"})
+        return None
 
     auth_token = secrets.token_urlsafe(32)
 
     await create_employer_token(edgedb_client, token=auth_token, user_id=employer.id)
+    return LoginAccess(token=auth_token, name=employer.name)
 
-    return LoginAccess(token=auth_token)
 
-
-@router.post("/worker")
-async def auth_worker(login: Login) -> LoginAccess:
-    password_hash = hashlib.sha256(login.password.encode()).hexdigest()
+async def auth_worker(password_hash: str, auth_data: AuthData) -> LoginAccess | None:
 
     worker = await get_worker_by_hash(
-        edgedb_client, hash=password_hash, email=login.email
+        edgedb_client, hash=password_hash, email=auth_data.email
     )
 
     if worker is None:
-        raise HTTPException(status_code=404, detail={"message": "Invalid login data"})
+        return None
 
     auth_token = secrets.token_urlsafe(32)
 
     await create_worker_token(edgedb_client, token=auth_token, user_id=worker.id)
-
-    return LoginAccess(token=auth_token)
+    return LoginAccess(token=auth_token, name=worker.name)
