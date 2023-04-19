@@ -15,12 +15,13 @@
                 <button @click="SideBar">☰</button>
             </div>
         </div>
-
+        <!--
         <div class="nav_text" v-show="getName">
             <span class="work">Работа для тех,<br> кто хочет</span>
             <span class="work-more">Большего</span>
             <MenuButtons></MenuButtons>
         </div>
+        -->
     </div>
 
 </template>

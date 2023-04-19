@@ -20,11 +20,11 @@
 
                 console.log("авторизируемся");
 
-                let response = await axios.post("/api/auth", input);
+                let response = await axios.post("http://127.0.0.1:8000/api/auth", input);
                 console.log("token_data",  response.data);
 
                 this.setName(response.data["name"]);
-                this.$router.push("/vacation");
+                this.$router.push("/tasks");
 
                 return response.data
             },

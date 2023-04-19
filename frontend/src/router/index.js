@@ -58,7 +58,7 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
-})
+});
 
 router.beforeEach(async (to, from, next) => {
     if (!store._modules.root._children.userStore.state.name && to.meta.auth) {

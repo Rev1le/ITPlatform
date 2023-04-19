@@ -1,23 +1,21 @@
 <template>
   <div class="wrap-page">
-    <!-- <div class="vacations-search">  -->
-      
-      <InputSearch :value="searchQuery"
-      @update:value="setSearchQuery" ></InputSearch>
-    <!-- </div> -->
-    <div class="vacation_desk">
-      <VacantionsList :vacations="sortedAndSearchedVacantions" />
-    </div>
+      <InputSearch :value="searchQuery" @update:value="setSearchQuery">
+      </InputSearch>
+      <div class="vacation_desk">
+        <VacantionsList :vacations="sortedAndSearchedVacantions" />
+      </div>
   </div>
 </template>
 
 <script>
 import VacantionsList from "@/components/Vacations/VacantionsList.vue";
 import InputSearch from "@/components/InputSearch.vue";
+import MenuPage from "@/views_beta/MenuPage.vue";
 import {mapState, mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   name: "Vacation",
-  components: { VacantionsList, InputSearch },
+  components: { VacantionsList, InputSearch, MenuPage },
   methods: {
     ...mapMutations({
 
