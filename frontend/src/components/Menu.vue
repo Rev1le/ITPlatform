@@ -1,23 +1,17 @@
 <template>
-    <div>
-        
-        <div class="menu">
+    <div class="menu">
             
-            <div class="menu_text">
-                <span class="menu_work_text">Работа для тех,<br> кто хочет</span>
-                <span class="menu_work_more_text">Большего</span>
-            </div>
-
-            <slot name="menu_buttons"/>
+        <div class="menu_text">
+            <span class="menu_work_text">Работа для тех,<br> кто хочет</span>
+            <span class="menu_work_more_text">Большего</span>
         </div>
 
-        <slot name = "content"/>
-
+        <slot name="menu_buttons"/>
     </div>
 </template>
 
 <script lang="js">
-import MenuButtons from "@/components/Menu/MenuButtons.vue"
+import MenuButtons from "@/components/Buttons/MenuButtons.vue"
 
 export default {
     components: {

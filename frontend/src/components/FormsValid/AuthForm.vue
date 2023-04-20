@@ -2,7 +2,9 @@
     <FormInput>
         <h1>Вход</h1>
 
-        <input 
+        <InputForm v-model:input_fields="InputFields"/>
+
+        <!-- <input 
                class="input-form" 
                type="text" 
                placeholder="Электронная почта" 
@@ -14,13 +16,13 @@
                type="password" 
                placeholder="Пароль" 
                v-model="SignInData.password"
-               >
+               > -->
 
         <p class="errors" v-if="error">
             {{ error }}
         </p>
 
-        <button class="button-form" @click="Auth"> Войти </button>
+        <button class="button-form" @click="submitForm"> Войти </button>
 
     </FormInput>
 </template>
@@ -28,43 +30,78 @@
 <script>
     import FormInput from './FormInput'
 
+    import InputForm from '../InputForm.vue';
+
     export default {
+        emits: ['submit'],
         components: {
             FormInput,
+            InputForm
         },
-        emits: [
-            "toParentAuth"
-        ],
         data() {
             return {
                 SignInData: {
-                    email: null,
-                    password: null
+                    email: "d",
+                    password: "2"
                 },
                 error: null,
+                InputFields: [
+                    {
+                        type: "text",
+                        placeholder: "Электронная почта",
+                        value: "",
+                    },
+                    {
+                        type: "password",
+                        placeholder: "Пароль",
+                        value: "",
+                    }
+                ]
             }
         },
         methods: {
-            Auth() {
+            submitForm() {
+                const email = this.SignInData.email;
+                const password =  this.SignInData.password;
 
-                const form_email = this.SignInData.email;
-                const form_password = this.SignInData.password;
+                // Для отладки
+                return this.$emit('submit', this.SignInData);
 
-                if (form_email && form_password) {
-                    this.error = null;
-                    return this.$emit("toParentAuth", this.SignInData);
+                if (email && password) {
+                    return this.$emit('submit', this.SignInData);
                 }
-
-                if (!form_email && !form_password) {
+                
+                if (!email && !password) {
                     this.error = "Заполните почту и пароль";
-
-                } else if (!form_email) {
+                } else if (!email) {
                     this.error = "Заполните почту";
-
-                } else if (!form_password) {
+                } else if (!password) {
                     this.error = "Заполните пароль";
                 }
+            },
+            test(input) {
+                console.log(input);
             }
+            // Auth() {
+
+            //     const form_email = this.SignInData.email;
+            //     const form_password = this.SignInData.password;
+
+            //     if (form_email && form_password) {
+            //         this.error = null;
+            //         return this.$emit("toParentAuth", this.SignInData);
+            //     }
+
+            //     if (!form_email && !form_password) {
+            //         this.error = "Заполните почту и пароль";
+
+            //     } else if (!form_email) {
+            //         this.error = "Заполните почту";
+
+            //     } else if (!form_password) {
+            //         this.error = "Заполните пароль";
+            //     }
+            // }
         },
     };
 </script>

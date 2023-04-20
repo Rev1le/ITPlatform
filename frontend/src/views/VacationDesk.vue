@@ -11,11 +11,10 @@
 <script>
 import VacantionsList from "@/components/Vacations/VacantionsList.vue";
 import InputSearch from "@/components/InputSearch.vue";
-import MenuPage from "@/views_beta/MenuPage.vue";
 import {mapState, mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   name: "Vacation",
-  components: { VacantionsList, InputSearch, MenuPage },
+  components: { VacantionsList, InputSearch},
   methods: {
     ...mapMutations({
 

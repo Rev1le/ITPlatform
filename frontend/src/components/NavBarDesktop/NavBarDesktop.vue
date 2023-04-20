@@ -15,20 +15,13 @@
                 <button @click="SideBar">☰</button>
             </div>
         </div>
-        <!--
-        <div class="nav_text" v-show="getName">
-            <span class="work">Работа для тех,<br> кто хочет</span>
-            <span class="work-more">Большего</span>
-            <MenuButtons></MenuButtons>
-        </div>
-        -->
     </div>
 
 </template>
 
 <script>
 import NavBarButtons from "./NavBarButtons";
-import MenuButtons from "../Menu/MenuButtons.vue"; // Перенести в отдельный компонент
+import MenuButtons from "../Buttons/MenuButtons.vue"; // Перенести в отдельный компонент
 import { mapGetters } from "vuex";
 export default {
   components: {

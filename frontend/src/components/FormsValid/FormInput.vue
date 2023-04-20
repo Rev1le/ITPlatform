@@ -1,16 +1,10 @@
 <template>
 <div class="form-wrap">
     <div class="form">
-   <slot>
-
-   </slot>
-</div>
+        <slot/>
+    </div>
 </div>  
 </template>
-
-<script>
-
-</script>
 
 <style scoped>
 .form-wrap{

@@ -1,6 +1,6 @@
 <template>
     <div class="toForm">
-        <AuthForm @toParentAuth='Auth'></AuthForm>
+        <AuthForm @submit='auth'></AuthForm>
     </div>
 </template>
 
@@ -16,17 +16,21 @@
             AuthForm
         },
         methods: {
-            async Auth(input) {
+            async auth(sign_in_data) {
 
-                console.log("авторизируемся");
+                console.log("Авторизируемся");
 
-                let response = await axios.post("http://127.0.0.1:8000/api/auth", input);
+                // Ошибка
+
+                let response = await axios.post("http://127.0.0.1:8000/api/auth", sign_in_data);
                 console.log("token_data",  response.data);
+
+                const myStorage = window.localStorage;
+                myStorage.setItem("token", response.data.token);
+                myStorage.setItem("username", response.data.name);
 
                 this.setName(response.data["name"]);
                 this.$router.push("/tasks");
-
-                return response.data
             },
 
             ...mapMutations({

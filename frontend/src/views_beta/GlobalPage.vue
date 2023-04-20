@@ -1,36 +1,40 @@
 <template>
-    
-    <div v-if="getName">    
-        <MenuPage>
-            <template #menu_buttons>
-                <MenuButtons></MenuButtons>
-            </template>
-        </MenuPage>
-    </div>
-     
+      
     <router-view v-slot = "{ Component, route }">  
+
+        <div v-if="route.meta.viewMenu">
+            
+            <MenuPage>
+                <template #menu_buttons>
+                    <MenuButtons></MenuButtons>
+                </template>
+            </MenuPage>
+
+        </div>
+
         <transition :name = "route.meta.transition" mode="out-in">
             <component :is = "Component" /> 
         </transition>
+        
     </router-view>
 
 </template>
 
 <script lang="js">
-import MenuButtons from "@/components/Menu/MenuButtons.vue"
-import MenuPage from "@/views_beta/MenuPage.vue";
+import MenuButtons from "@/components/Buttons/MenuButtons.vue"
+import MenuPage from "@/components/Menu.vue";
 import { mapGetters } from "vuex";
 
 export default {
     components: {
-            MenuPage,
-            MenuButtons
-        },
-        computed: {
-            ...mapGetters({
-                getName: "userStore/getName",
-            })
-        }
+        MenuPage,
+        MenuButtons
+    },
+    computed: {
+        ...mapGetters({
+            getName: "userStore/getName",
+        })
+    }
 }
 </script>
 

@@ -7,10 +7,9 @@
             <li v-for="error in errors" :key="error">{{ error }}</li>
             </ul>
         </p>
-        <input class="input-form" type="text" placeholder="ФИО" v-model="SignUp.name" >
-        <input class="input-form" type="date"  v-model="SignUp.birthday">
-        <input class="input-form" type="text" placeholder="Электронная почта" v-model="SignUp.email">
-        <input class="input-form" type="text" placeholder="Пароль" v-model="SignUp.password">
+
+        <InputForm v-model:input_fields="inputFields"/>
+
         <button class="button-form" @click="toParent"> Зарегистрироваться </button>
     </FormInput>
 </template>
@@ -18,24 +17,50 @@
 <script>
 // import { error } from 'console';
 import FormInput from './FormInput'
+import InputForm from '../InputForm.vue';
 
 export default {
-    components:{
+    components: {
         FormInput,
+        InputForm
     },
-    data(){
+
+    data() {
         return{
-            SignUp:{
+            SignUp: {
                 "name":"",
                 "birthday":"",
                 "email":"",
                 "password":""
             },
             errors:[],
+            inputFields: [
+            {
+                type: "text",
+                placeholder: "ФИО",
+                value: "",
+            },
+            {
+                type: "date",
+                placeholder: "",
+                value: "",
+            },
+            {
+                type: "text",
+                placeholder: "Электронная почта",
+                value: "",
+            },
+            {
+                type: "password",
+                placeholder: "Пароль",
+                value: "",
+            }
+            ]
         }
     },
     methods: {
-        toParent(){
+        toParent() {
+
             if(this.SignUp.name && this.SignUp.birthday && this.SignUp.email && this.SignUp.password) {
                 return this.$emit("toParent", this.SignUp);
             }

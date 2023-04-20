@@ -31,16 +31,16 @@
 
 <style scoped>
     .menu_buttons {
-        padding: 2% 25%;
+        padding: 2% 10%;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         flex-wrap: wrap;
-        gap:5px;
+        gap: 2%;
     }
     .nav_btn, .nav_btn_vac {
         background: #EAEFF7;
         border-radius: 10px;
-        padding: 9px 16px;
+        padding: 12px 20px;
         font-size: 16px;
     }
     .nav_btn_vac{
