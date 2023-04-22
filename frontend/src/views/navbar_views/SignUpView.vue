@@ -6,8 +6,11 @@
   
   <script>
   import axios from "axios";
+  import {mapActions, mapGetter, mapMutations} from "vuex";
+
+  // @ is an alias to /src
+  // import HelloWorld from '@/components/HelloWorld.vue'
   import SignUpForm from '@/components/FormsValid/SignUpForm.vue'  
-  
   export default {
 
     name: 'HomeView',
@@ -36,9 +39,9 @@
         return response.data
       },
 
-      // ...mapMutations({
-      //   setName:"userStore/setName"
-      // })
+      ...mapMutations({
+        setName:"userStore/setName"
+      })
     }
   }
   </script>

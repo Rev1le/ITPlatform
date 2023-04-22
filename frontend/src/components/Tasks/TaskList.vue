@@ -7,6 +7,7 @@
 <script>
 import TaskItem from './TaskItem.vue';
 export default {
+    name: "TaskList",
     components:{
         TaskItem
     },
@@ -42,9 +43,6 @@ export default {
     grid-auto-rows: 240px;
     padding-bottom: 50px;
 }
-
-
-
 
 .task:nth-child( 3n){
     background: #FF0066;

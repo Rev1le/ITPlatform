@@ -1,41 +1,26 @@
 <template>
-    <FormInput>
-        <h1>Вход</h1>
+    <div class="form-wrap">
+        <div class="form">
+            <h1>Вход</h1>
 
-        <InputForm v-model:input_fields="InputFields"/>
+            <InputForm v-model:input_fields="InputFields"/>
 
-        <!-- <input 
-               class="input-form" 
-               type="text" 
-               placeholder="Электронная почта" 
-               v-model="SignInData.email"
-               >
+            <p class="errors" v-if="error">
+                {{ error }}
+            </p>
 
-        <input 
-               class="input-form" 
-               type="password" 
-               placeholder="Пароль" 
-               v-model="SignInData.password"
-               > -->
-
-        <p class="errors" v-if="error">
-            {{ error }}
-        </p>
-
-        <button class="button-form" @click="submitForm"> Войти </button>
-
-    </FormInput>
+            <button class="button-form" @click="submitForm"> Войти </button>
+        </div>
+    </div>
 </template>
 
 <script>
-    import FormInput from './FormInput'
 
-    import InputForm from '../InputForm.vue';
+    import InputForm from './InputForm.vue';
 
     export default {
         emits: ['submit'],
         components: {
-            FormInput,
             InputForm
         },
         data() {
@@ -61,47 +46,9 @@
         },
         methods: {
             submitForm() {
-                const email = this.SignInData.email;
-                const password =  this.SignInData.password;
-
-                // Для отладки
+                console.log(this.InputFields);
                 return this.$emit('submit', this.SignInData);
-
-                if (email && password) {
-                    return this.$emit('submit', this.SignInData);
-                }
-                
-                if (!email && !password) {
-                    this.error = "Заполните почту и пароль";
-                } else if (!email) {
-                    this.error = "Заполните почту";
-                } else if (!password) {
-                    this.error = "Заполните пароль";
-                }
             },
-            test(input) {
-                console.log(input);
-            }
-            // Auth() {
-
-            //     const form_email = this.SignInData.email;
-            //     const form_password = this.SignInData.password;
-
-            //     if (form_email && form_password) {
-            //         this.error = null;
-            //         return this.$emit("toParentAuth", this.SignInData);
-            //     }
-
-            //     if (!form_email && !form_password) {
-            //         this.error = "Заполните почту и пароль";
-
-            //     } else if (!form_email) {
-            //         this.error = "Заполните почту";
-
-            //     } else if (!form_password) {
-            //         this.error = "Заполните пароль";
-            //     }
-            // }
         },
     };
 </script>
@@ -117,4 +64,23 @@
         margin: 5px 0;
 
     }
+    .form-wrap{
+    margin:auto;
+    border-radius: 12px;
+    padding: 15px;
+    min-height: 50px;
+    min-width: 200px;
+    width: 40%;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .form-wrap{
+        width: 90%;
+    }
+}
 </style>

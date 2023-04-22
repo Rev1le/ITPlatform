@@ -1,23 +1,29 @@
 <template>
+  
   <div class="vacation-list">
     <transition-group name="vac">
-    <MentorItem v-for="(vac, index) in Mentors" :key="index" :Mentor="vac"></MentorItem>
-  </transition-group>
+      
+      <VacantionOffer 
+        v-for="(vac, index) in vacations" 
+        :key="index" 
+        :vacation="vac"/>
+
+    </transition-group>
   </div>
+
 </template>
 
 <script>
-import MentorItem from "./MentorItem.vue";
+import VacantionOffer from "@/components/Vacantions/VacantionOffer.vue";
 export default {
-  name: "MentorsList",
-  components: { MentorItem },
+  name: "VacantionsList",
+  components: { VacantionOffer },
   props:{
-    Mentors:{
+    vacations:{
             type: Array,
             required: true
         }
   }
-  
 };
 </script>
 
