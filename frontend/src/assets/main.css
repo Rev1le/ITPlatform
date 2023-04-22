@@ -1,5 +1,53 @@
-@import url(//db.onlinewebfonts.com/c/c68e21ad1a10803b1ef491fd0392b067?family=SB+Sans+Text);
-@import url(//db.onlinewebfonts.com/c/2d130488c7306881cf236b40ea2a1020?family=SB+Sans+Display+Semibold);
+/*
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
+*/
+
+@font-face {font-family: "SB Sans Text";
+  src:  url("/src/assets/fonts/SB Sans Text/c68e21ad1a10803b1ef491fd0392b067.woff2") format("woff2"), /* chrome firefox */
+        url("/src/assets/fonts/SB Sans Text/c68e21ad1a10803b1ef491fd0392b067.woff") format("woff"), /* chrome firefox */
+        url("/src/assets/fonts/SB Sans Text/c68e21ad1a10803b1ef491fd0392b067.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+        url("/src/assets/fonts/SB Sans Text/c68e21ad1a10803b1ef491fd0392b067.svg#SB Sans Text") format("svg"); /* iOS 4.1- */
+}
+
+@font-face {font-family: "SB Sans Display Semibold";
+  src:  url("/src/assets/fonts/SB Sans Display Semibold/2d130488c7306881cf236b40ea2a1020.woff2") format("woff2"), /* chrome firefox */
+        url("/src/assets/fonts/SB Sans Display Semibold/2d130488c7306881cf236b40ea2a1020.woff") format("woff"), /* chrome firefox */
+        url("/src/assets/fonts/SB Sans Display Semibold/2d130488c7306881cf236b40ea2a1020.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+        url("/src/assets/fonts/SB Sans Display Semibold/2d130488c7306881cf236b40ea2a1020.svg#SB Sans Display Semibold") format("svg"); /* iOS 4.1- */
+}
+
 
 *,
 html,
@@ -75,3 +123,4 @@ button {
     --pad: 2%;
   }
 }
+
