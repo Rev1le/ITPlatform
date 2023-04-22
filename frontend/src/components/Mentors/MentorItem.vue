@@ -1,9 +1,9 @@
 
 <template>
-  <div class="window_border" @click="$router.push(`/Mentor/${1}`)">
+  <div class="window_border" @click="$router.push(`/mentor/${1}`)">
     <p class="offer_title">
       
-      {{ Mentor.name }}
+      {{ mentor.name }}
     </p>
     <div class="information_string">
       <b class="company_Name">
@@ -11,29 +11,29 @@
       </b>
       <b class="salary">
       
-        {{ Mentor.salary }}
+        {{ mentor.salary }}
       </b>
     </div>
     <div class="offer_text">
-      {{ Mentor.desription }}
+      {{ mentor.desription }}
    
     <!-- {{  }} -->
     </div>
     <div class="stack_icons">
  
-      <StackIcon v-for="(name, index) in Mentor.skills" :key="index" :stack-name="name"></StackIcon>
+      <StackIcon v-for="(name, index) in mentor.skills" :key="index" :stack-name="name"></StackIcon>
     </div>
   </div>
 </template>
 
 <script>
-import StackIcon from "@/components/Vacations/StackIcon";
+import StackIcon from "@/components/Vacantions/StackIcon.vue";
 export default{
   name: "MentorItem",
   components: {StackIcon},
   
   props: {
-    Mentor:{
+    mentor:{
      
     }
   }

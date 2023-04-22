@@ -1,23 +1,29 @@
 <template>
   <div class="vacation-list">
+    
     <transition-group name="vac">
-    <MentorItem v-for="(vac, index) in Mentors" :key="index" :Mentor="vac"></MentorItem>
-  </transition-group>
+      <MentorItem 
+        v-for="(vac, index) in mentors" 
+        :key="index" 
+        :mentor="vac"
+      />
+    </transition-group>
+
   </div>
 </template>
 
 <script>
 import MentorItem from "./MentorItem.vue";
+
 export default {
   name: "MentorsList",
   components: { MentorItem },
-  props:{
-    Mentors:{
-            type: Array,
-            required: true
-        }
+  props: {
+    mentors: {
+      type: Array,
+      required: true
+    }
   }
-  
 };
 </script>
 

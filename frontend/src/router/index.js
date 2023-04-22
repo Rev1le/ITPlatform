@@ -6,7 +6,7 @@ import AuthView from '../views/AuthView.vue';
 import VacationDesk from "../views/menu_views/VacantionDesk.vue";
 //import VacationTest from "../views/menu_views/VacationTest.vue";
 import TasksView from "../views/menu_views/TasksView.vue";
-//import Mentors from "../views/menu_views/MentorsView.vue";
+import Mentors from "../views/menu_views/MentorsView.vue";
 import MainPage from "../views/menu_views/MainPage.vue";
 import VacancyView from "../views/VacancyView.vue";
 
@@ -36,12 +36,12 @@ const routes = [
     component: VacationDesk,
     meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true  },
   },
-  // {
-  //   path: '/mentors',
-  //   name: 'Mentors',
-  //   component: () => import('../views/menu_views/MentorsView.vue'),
-  //   meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true },
-  // },
+  {
+    path: '/mentors',
+    name: 'Mentors',
+    component: Mentors,
+    meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true },
+  },
   {
     path: '/tasks',
     name: 'Tasks',
