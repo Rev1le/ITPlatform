@@ -3,7 +3,13 @@
         <div class="form">
             <h1>Вход</h1>
 
-            <InputForm v-model:input_fields="InputFields"/>
+            <!-- <InputForm v-model:input_fields="InputFields"/> -->
+
+            <InputField 
+                v-for="(value, index) in InputFields" 
+                v-model:field="inputFields[index]" 
+                :key="index" 
+            />
 
             <p class="errors" v-if="error">
                 {{ error }}
@@ -15,13 +21,12 @@
 </template>
 
 <script>
-
-    import InputForm from './InputForm.vue';
+    import InputField from "./InputField.vue";
 
     export default {
         emits: ['submit'],
         components: {
-            InputForm
+            InputField
         },
         data() {
             return {
