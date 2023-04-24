@@ -13,6 +13,7 @@ from app.queries.get_worker_by_token_async_edgeql import (
     get_worker_by_token,
 )
 
+
 token_header = APIKeyHeader(name="Token")
 AuthEmplayer = TypeVar(
     "Annotated[GetEmployerByTokenResult, Depends(check_auth_employer_token)]"
