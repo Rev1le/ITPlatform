@@ -18,10 +18,47 @@ class MentorData(BaseModel):
     salary: float
     resume: str
 
+class Mentor(BaseModel):
+    name: str
+    vocation: str
+    skills: list[str]
+    salary: str
+    description: str
+
+mentors = [
+    Mentor(
+        name="Мария Иванова",
+        vocation="Python & SQL",
+        skills=["sql", "Soft", "python"],
+        salary="Опытный ментор",
+        description="Хочу помочь начинающим"
+    ),
+    Mentor(
+        name="Иван Козюков",
+        vocation="Python & SQL",
+        skills=["sql", "python"],
+        salary="Опытный ментор",
+        description="Хочу помочь начинающим разработчикам"
+    ),
+    Mentor(
+        name="Король и Шут",
+        vocation="Python & SQL",
+        skills=["Молнии","Дурак"],
+        salary="Опытный ментор",
+        description="Помогу в сборе молниц"
+    ),
+
+]
+
+# @router.get("/all")
+# async def get_all_mentors() -> list[GetMentorsResult]:
+#     return await get_mentors(edgedb_client)
 
 @router.get("/all")
-async def get_all_mentors() -> list[GetMentorsResult]:
-    return await get_mentors(edgedb_client)
+async def get_all_mentors() -> list[Mentor]:
+    #await test_db()
+    #return await test_db()
+    return []
 
 
 @router.post("/")

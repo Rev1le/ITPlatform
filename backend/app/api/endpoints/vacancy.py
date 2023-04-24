@@ -1,5 +1,6 @@
+import secrets
 from typing import Annotated
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
@@ -15,8 +16,9 @@ from app.queries.get_worker_by_token_async_edgeql import GetWorkerByTokenResult
 
 
 class VacancyData(BaseModel):
+    id: str
     name: str
-    about: str
+    description: str
     skills: list[str]
     company: str
     salary: float | None  # If None the salary =
@@ -26,9 +28,23 @@ class VacancyData(BaseModel):
 router = APIRouter()
 
 
+vacancies_list = [
+        VacancyData(
+            id=secrets.token_urlsafe(32),
+            name="Rust",
+            description="Test_vacancy",
+            skills=["Rust", "DevOps"],
+            company="Sber",
+            salary=0,
+            required_task_block_ids=[uuid4(), uuid4()]
+        ),
+        VacancyData(id=secrets.token_urlsafe(32), name="Python", description="Test_vacancy2", skills=["Python", "SQL", "pip"], company="Sber", salary=8000, required_task_block_ids = []),
+    ]
+
 @router.get("/all")
-async def get_all_vacancies() -> list[GetVacanciesResult]:
-    return await get_vacancies(edgedb_client)
+async def get_all_vacancies() -> list[VacancyData]:
+    return vacancies_list
+    #return await get_vacancies(edgedb_client)
 
 
 @router.post("/")
@@ -39,20 +55,26 @@ async def create_vacancy(
         edgedb_client,
         employer_id=employer.id,
         name=vacancy_data.name,
-        about=vacancy_data.about,
+        description=vacancy_data.about,
         skills=vacancy_data.skills,
         company=vacancy_data.company,
         salary=vacancy_data.salary,
         required_task_block_ids=vacancy_data.required_task_block_ids,
     )
 
-
+"""
 @router.get("/{id}")
 async def vacancy(
     id: UUID,
     worker: Annotated[GetWorkerByTokenResult, Depends(check_auth_worker_token)],
-) -> GetVacancyResult:
-    result = await get_vacancy(edgedb_client, user_id=worker.id, vacancy_id=id)
-    if result is None:
-        raise HTTPException(status_code=404, detail={"message": "Unknown vacancy"})
-    return result
+) -> VacancyData:
+    return vacancies_list[0]
+    # result = await get_vacancy(edgedb_client, user_id=worker.id, vacancy_id=id)
+    # if result is None:
+    #     raise HTTPException(status_code=404, detail={"message": "Unknown vacancy"})
+    # return result
+"""
+
+@router.get("/{id}")
+async def vacancy(id: str) -> VacancyData:
+    return vacancies_list[0]
