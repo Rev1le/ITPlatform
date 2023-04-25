@@ -1,46 +1,28 @@
-from typing import Annotated, TypeVar
+from typing import Annotated, TypeVar, TypeAlias
 
 from fastapi import Depends, HTTPException
 from fastapi.security import APIKeyHeader
 
-from app.core.database import edgedb_client
-from app.queries.get_employer_by_token_async_edgeql import (
-    GetEmployerByTokenResult,
-    get_employer_by_token,
-)
-from app.queries.get_worker_by_token_async_edgeql import (
-    GetWorkerByTokenResult,
-    get_worker_by_token,
-)
+from app import db
+from app.db.queries.get_user_by_auth_token_async import get_user_by_auth_token
 
 
 token_header = APIKeyHeader(name="Token")
-AuthEmplayer = TypeVar(
-    "Annotated[GetEmployerByTokenResult, Depends(check_auth_employer_token)]"
-)
 
 
-async def check_auth_employer_token(
+async def check_auth_user_token(
     token: Annotated[str, Depends(token_header)]
-) -> GetEmployerByTokenResult:
-    employer = await get_employer_by_token(edgedb_client, token=token)
+) -> db.User:
 
-    if employer is None:
+    user = await get_user_by_auth_token(token)
+    print("Result user token =>", user)
+
+    if user is None:
         raise HTTPException(
-            status_code=400, detail={"message": "Invalid token in headers"}
+            status_code=400,
+            detail={"message": "Invalid token in headers"}
         )
 
-    return employer
+    return user
 
-
-async def check_auth_worker_token(
-    token: Annotated[str, Depends(token_header)]
-) -> GetWorkerByTokenResult:
-    worker = await get_worker_by_token(edgedb_client, token=token)
-
-    if worker is None:
-        raise HTTPException(
-            status_code=400, detail={"message": "Invalid token in headers"}
-        )
-
-    return worker
+AuthUser: TypeAlias = Annotated[db.User, Depends(check_auth_user_token)]
