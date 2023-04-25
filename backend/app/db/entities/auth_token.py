@@ -9,8 +9,8 @@ class AuthToken(BaseModel):
 
 
 tokens_table = Table(
-    'tokens',
+    'token',
     metadata,
-    Column('token', String(128), nullable=False, primary_key=True),
-    Column('owner_uuid', ForeignKey("employers.uuid"))
+    Column('token', String(128), primary_key=True),
+    Column('owner_uuid', ForeignKey("user.uuid"))
 )

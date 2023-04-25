@@ -1,8 +1,16 @@
-from sqlalchemy import Table, Column, Integer, String, Text, Date, ARRAY, ForeignKey
+from pydantic import BaseModel
+from sqlalchemy import Table, Column, Integer, String, Sequence, Identity
 from . import metadata
 
+
+class Skill(BaseModel):
+    uuid: str
+    name: str
+
+
 skills_table = Table(
-    'skills',
+    'skill',
     metadata,
-    Column('name', String(128), primary_key=True)
+    Column('uuid', String(128), primary_key=True),
+    Column('name', String(128), unique=True, nullable=False),
 )
