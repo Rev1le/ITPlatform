@@ -5,7 +5,7 @@
         :type="field.type" 
         :placeholder="field.placeholder"
         :value="field.value"
-        @input="sumbit"
+        @input="submit"
     />
 
 </template>
@@ -23,8 +23,11 @@ export default {
     emits: ['update:field'],
     methods: {
         async submit(event) {
-            console.log(event);
-           // this.$emit('submit', )
+            this.$emit('update:field', {
+                type: this.field.type,
+                placeholder: this.field.placeholder,
+                value: event.target.value,
+            })
         }
     }
 }

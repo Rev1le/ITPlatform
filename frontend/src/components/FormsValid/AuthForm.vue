@@ -7,8 +7,8 @@
 
             <InputField 
                 v-for="(value, index) in InputFields" 
-                v-model:field="inputFields[index]" 
-                :key="index" 
+                v-model:field="InputFields[index]"
+                v-bind:key="index"
             />
 
             <p class="errors" v-if="error">
@@ -31,8 +31,8 @@
         data() {
             return {
                 SignInData: {
-                    email: "d",
-                    password: "2"
+                    email: "",
+                    password: ""
                 },
                 error: null,
                 InputFields: [
@@ -52,6 +52,14 @@
         methods: {
             submitForm() {
                 console.log(this.InputFields);
+
+                this.SignInData = {
+                    email: this.InputFields[0].value,
+                    password: this.InputFields[1].value
+                };
+
+                console.log(this.SignInData);
+
                 return this.$emit('submit', this.SignInData);
             },
         },
