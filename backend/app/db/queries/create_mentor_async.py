@@ -6,4 +6,4 @@ async def create_mentor(mentor: entities.Mentor):
         .insert()\
         .values(mentor.dict())
 
-    database.execute(query)
+    await database.execute(query)
