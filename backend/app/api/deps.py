@@ -5,10 +5,16 @@ from fastapi.security import APIKeyHeader
 
 from app import db
 from app.db.queries.get_user_by_auth_token_async import get_user_by_auth_token
-
+from app.logger import Logger
 
 token_header = APIKeyHeader(name="Token")
+logger = Logger()
 
+
+async def get_logger() -> Logger:
+    return logger
+
+GetLogger: TypeAlias = Annotated[Logger, Depends(get_logger)]
 
 async def check_auth_user_token(
     token: Annotated[str, Depends(token_header)]
@@ -24,5 +30,6 @@ async def check_auth_user_token(
         )
 
     return user
+
 
 AuthUser: TypeAlias = Annotated[db.User, Depends(check_auth_user_token)]
