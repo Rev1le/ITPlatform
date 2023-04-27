@@ -12,14 +12,14 @@ const useUserStore = defineStore('users', {
         getUser(state) {return state.user;}
     },
     actions: {
-        setRole(state, role) {
-            state.role = role;
+        setRole(role) {
+            this.role = role;
         },
-        setName(state, name) {
-            state.name = name;
+        setName(name) {
+            this.name = name;
         },
-        setUser(state, user) {
-            state.user = user;
+        setUser(user) {
+            this.user = user;
         },
     },
 });

@@ -2,13 +2,14 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import useUserStore from '@/stores/users';
 
 import AuthView from '../views/AuthView.vue';
-//import SignUpView from '../views/menu_views/SignUpView.vue'
+import SignUpView from '../views/SignUpView.vue';
 import VacationDesk from "../views/menu_views/VacantionDesk.vue";
 //import VacationTest from "../views/menu_views/VacationTest.vue";
 import TasksView from "../views/menu_views/TasksView.vue";
 import Mentors from "../views/menu_views/MentorsView.vue";
 import MainPage from "../views/menu_views/MainPage.vue";
 import VacancyView from "../views/VacancyView.vue";
+import MentorView from "../views/MentorView.vue";
 
 
 const routes = [
@@ -24,12 +25,12 @@ const routes = [
     component: AuthView,
     meta: { transition: 'slide-left', requiresAuth: false, viewMenu: false  },
   },
-  // {
-  //   path: '/signup',
-  //   name: 'SignUp',
-  //   component: () => import('../views/SignUpView.vue'),
-  //   meta: { transition: 'slide-right', requiresAuth: false, viewMenu: false  },
-  // },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUpView,
+    meta: { transition: 'slide-right', requiresAuth: false, viewMenu: false  },
+  },
   {
     path: '/vacations',
     name: 'Vacations',
@@ -40,6 +41,13 @@ const routes = [
     path: '/mentors',
     name: 'Mentors',
     component: Mentors,
+    meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true },
+  },
+  {
+    path: '/mentor/:id',
+    name: 'Mentor',
+    component: MentorView,
+    props: true,
     meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true },
   },
   {

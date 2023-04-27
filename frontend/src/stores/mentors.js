@@ -32,7 +32,9 @@ const useMentorStore = defineStore('mentors', {
 
             const response = await axios.get("http://localhost:8000/api/mentor/all", {});
             if (response.status === 200) {
+
                 this.mentors = response.data;
+                console.log(this.mentors);
             }
 
           } catch (e) {
@@ -42,33 +44,28 @@ const useMentorStore = defineStore('mentors', {
 
         async reqMentorsById(id) {
           try {
-            await axios
-              .get(`тут_типо_путь/${id}`)
-              .then((response) => {
-                if (response.status === 200) {
-                  return response.data;
-                }
-              });
+            const response = await axios.get(`http://localhost:8000/api/mentor/${id}`);
+            return response.data
           } catch (e) {
             console.log(e);
           }
         },
-        async loadMoreMentors({state, commit}) {
-            try {
-                commit('setPage', state.page + 1)
-                const response = await axios.get('', {
-                    params: {
-                        _page: state.page,
-                        _limit: state.limit
-                    }
-                });
-                commit('setTotalPages', Math.ceil(response.headers['x-total-count'] / state.limit))
-                commit('setPosts', [...state.posts, ...response.data]);
-            } catch (e) {
-                console.log(e)
-            }
-        }
+        // async loadMoreMentors({state, commit}) {
+        //     try {
+        //         commit('setPage', state.page + 1)
+        //         const response = await axios.get('', {
+        //             params: {
+        //                 _page: state.page,
+        //                 _limit: state.limit
+        //             }
+        //         });
+        //         commit('setTotalPages', Math.ceil(response.headers['x-total-count'] / state.limit))
+        //         commit('setPosts', [...state.posts, ...response.data]);
+        //     } catch (e) {
+        //         console.log(e)
+        //     }
+        // }
       },
 });
 
-export default useMentorStore;
+export default useMentorStore

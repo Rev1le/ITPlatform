@@ -1,6 +1,6 @@
 
 <template>
-  <div class="window_border" @click="$router.push(`/mentor/${1}`)">
+  <div class="window_border" @click="$router.push(`/mentor/${mentor.uuid}`)">
     <p class="offer_title">
       
       {{ mentor.name }}

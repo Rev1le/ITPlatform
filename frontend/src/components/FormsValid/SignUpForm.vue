@@ -25,7 +25,6 @@ import InputField from './InputField.vue';
 
 export default {
     components: {
-        //InputForm,
         InputField
     },
     emits: ['submit'],
@@ -67,16 +66,23 @@ export default {
         toParent() {
 
             console.log(this.inputFields);
-
-            if(this.SignUp.name && this.SignUp.birthday && this.SignUp.email && this.SignUp.password) {
-                return this.$emit("submit", this.SignUp);
-            }
-            this.errors = [];
-            if(!this.SignUp.name) this.errors.push("Заполните ФИО");
-            if(!this.SignUp.birthday) this.errors.push("Заполните дату рождения");
-            if(!this.SignUp.email) this.errors.push("Заполните почту");
-            if(!this.SignUp.password) this.errors.push("Заполните пароль");
             
+            const singUpData = this.inputFields.map((input) => input.value);
+
+            this.SignUp = {
+                "name": singUpData[0],
+                "birthday": singUpData[1],
+                "email": singUpData[2],
+                "password": singUpData[3]
+            };
+
+            if (!this.SignUp["name"] && !this.SignUp["birthday"] && !this.SignUp["email"] && !this.SignUp["password"]) {
+                this.errors.push("Заполните все поля")
+                return
+            }
+
+            this.$emit('submit', this.SignUp)
+
         }
     },
 }
