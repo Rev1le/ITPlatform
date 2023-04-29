@@ -4,17 +4,17 @@
     </div>
 </template>
   
-  <script>
-  import axios from "axios";
-  import SignUpForm from '@/components/FormsValid/SignUpForm.vue'  
-  import useUserStore from "@/stores/users.js";
-  import {mapActions} from "pinia";
+    <script>
+    import axios from "axios";
+    import SignUpForm from '@/components/FormsValid/SignUpForm.vue'  
+    import useUserStore from "@/stores/users.js";
+    import {mapActions} from "pinia";
   
-  export default {
+    export default {
 
     name: 'SignUpView',
     components: {
-      SignUpForm
+        SignUpForm
     },
 
     methods: {
@@ -30,6 +30,10 @@
 
         let response = await axios.post("http://localhost:8000/api/registration/user", signUp_data);
         console.log("input: ", signUp_data, "token_data",  response.data);
+
+        //const myStorage = window.localStorage;
+        //myStorage.setItem("token", response.data.token);
+        //myStorage.setItem("username", response.data.name);
 
         this.setName(signUp_data["name"]);
         this.$router.push("/vacation")

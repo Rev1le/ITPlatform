@@ -8,7 +8,7 @@
     import axios from "axios";
     import AuthForm from '@/components/FormsValid/AuthForm.vue';
     import { mapWritableState } from 'pinia'
-    import useUserStore from '@/stores/users';
+    import useUserStore from '@/stores/users.js';
 
     export default {
         name: 'HomeView',
