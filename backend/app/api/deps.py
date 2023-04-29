@@ -1,4 +1,4 @@
-from typing import Annotated, TypeVar, TypeAlias
+from typing import Annotated, TypeAlias
 
 from fastapi import Depends, HTTPException
 from fastapi.security import APIKeyHeader
@@ -16,12 +16,15 @@ async def get_logger() -> Logger:
 
 GetLogger: TypeAlias = Annotated[Logger, Depends(get_logger)]
 
+
 async def check_auth_user_token(
-    token: Annotated[str, Depends(token_header)]
+    token: Annotated[str, Depends(token_header)],
+    loger: GetLogger
 ) -> db.User:
 
     user = await get_user_by_auth_token(token)
-    print("Result user token =>", user)
+
+    loger.log(f"Result user token => {user}")
 
     if user is None:
         raise HTTPException(
@@ -30,6 +33,5 @@ async def check_auth_user_token(
         )
 
     return user
-
 
 AuthUser: TypeAlias = Annotated[db.User, Depends(check_auth_user_token)]

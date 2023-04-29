@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from app.api.deps import AuthUser
+from app.api.deps import AuthUser, GetLogger
 from app.db.queries.create_user_async import create_user
 from app.db.queries.create_auth_token_async import create_auth_token
 from app.db.queries.create_job_applicant_async import create_job_applicant
@@ -40,7 +40,7 @@ router = APIRouter()
 
 
 @router.post("/user")
-async def registration_user(registration_data: Registration) -> RegistrationAccess:
+async def registration_user(registration_data: Registration, logger: GetLogger) -> RegistrationAccess:
     birthday = datetime\
         .strptime(registration_data.birthday, "%d-%m-%Y")\
         .replace(tzinfo=timezone.utc)
@@ -64,7 +64,7 @@ async def registration_user(registration_data: Registration) -> RegistrationAcce
         print(created_user)
 
     except sqlite3.IntegrityError as e:
-        print("Create user error =>", e)
+        logger.log(f"Create user error => {e}")
         raise HTTPException(status_code=404, detail={"message": "Invalid registration data"})
 
     token_data = await create_auth_token(user.uuid)
@@ -75,37 +75,6 @@ async def registration_user(registration_data: Registration) -> RegistrationAcce
     )
 
 
-# @router.post("/employer")
-# async def registration_employer(registration_employer_data: Registration) -> RegistrationAccess:
-#
-#     birthday = datetime\
-#         .strptime(registration_data.birthday, "%d-%m-%Y")\
-#         .replace(tzinfo=timezone.utc)
-#     password_hash = hashlib\
-#         .sha256(registration_data.password.encode())\
-#         .hexdigest()
-#
-#     try:
-#         created_employer = await db.create_employer(db.Employer(
-#             uuid=str(uuid.uuid4()),
-#             name=registration_data.name,
-#             birthday=birthday,
-#             password_hash=password_hash,
-#             email=registration_data.email,
-#             bio=None,
-#             photo=None
-#         ))
-#         print(created_employer)
-#
-#     except sqlite3.IntegrityError as e:
-#         print("Create employer with error =>", e)
-#         raise HTTPException(status_code=404, detail={"message": "Invalid login data"})
-#
-#     auth_token = secrets.token_urlsafe(32)
-#
-#     token_data = await db.create_employer_auth_token(created_employer.uuid)
-#
-#     return RegistrationAccess(token=token_data.token, name=created_employer.name)
 
 
 @router.post("/job_applicant")
