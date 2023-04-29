@@ -7,7 +7,7 @@
 
             <InputField 
                 v-for="(value, index) in InputFields" 
-                v-model:field="InputFields[index]"
+                v-model:field="value"
                 v-bind:key="index"
             />
 

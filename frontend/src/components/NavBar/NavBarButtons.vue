@@ -17,7 +17,7 @@ import useUserStore from '@/stores/users'
 import ProfileMenu from './ProfileMenu.vue'
 export default {
     components:{
-        ProfileMenu,
+        ProfileMenu,  
     },
   data() {
     return {

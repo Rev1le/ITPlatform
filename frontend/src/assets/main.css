@@ -100,9 +100,9 @@ button {
 .wrap-page {
   padding: 50px var(--pad) 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
   justify-content: space-between;
-  /* justify-content: center; */
+ 
 }
 
 

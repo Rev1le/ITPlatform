@@ -11,7 +11,7 @@
 
             <InputField 
                 v-for="(inp_field, index) in inputFields" 
-                v-model:field="inputFields[index]" 
+                v-model:field="inp_field" 
                 :key='index'
             />
 

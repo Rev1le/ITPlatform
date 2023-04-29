@@ -14,7 +14,7 @@
 </template>
 
 <script>
-export default {
+export default {    
   emits: ['update:show'],
   props: {
     menu: Array,
