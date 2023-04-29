@@ -1,60 +1,58 @@
 <template>
+  <div v-if="!getName" class="navBtns">
+    <button class="auth_btn" @click="$router.push('/auth')">Войти</button>
+
+    <button class="sign_btn" @click="$router.push('/signup')">Зарегестрироваться</button>
+  </div>
+
+  <div v-else >
     
-    <div v-if="!getName" class="navBtns">
-        <button class="auth_btn" @click="$router.push('/auth')">
-            Войти
-        </button>
-
-        <button class="sign_btn" @click="$router.push('/signup')">
-            Зарегестрироваться
-        </button>
-    </div>
-
-    <div v-else class="navBtns">
-        <button class="sign_btn" @click="$router.push('/profile')">
-            {{ getName }}
-        </button>
-    </div>
-
+   <ProfileMenu :menu="menu" v-model:show="showMenu" :profileName="getName"></ProfileMenu>
+</div>
 </template>
 
 <script>
-    import { mapState } from 'pinia';
-    import useUserStore from '@/stores/users';
+import { mapState } from 'pinia'
+import useUserStore from '@/stores/users'
+import ProfileMenu from './ProfileMenu.vue'
+export default {
+    components:{
+        ProfileMenu,
+    },
+  data() {
+    return {
+      menu: [
+        { name: 'Мой профиль', link: '/profile' },
+        { name: 'Менторство', link: '/profile' },
+        { name: 'Настройки', link: '/profile' },
+        { name: 'Выход', link: '/profile' },
+      ],
+      showMenu:false,
+    }
+  },
+  methods: {
+    // Брать из pinia
+    // getName() {
+    //     return ""
+    // }
     
-    export default {
-        methods: {
-            // Брать из pinia
-            // getName() {
-            //     return ""
-            // }
-        },
-        computed: {
-            ...mapState(useUserStore, ['getName'])
-        }
-    };
+  },
+  computed: {
+    ...mapState(useUserStore, ['getName'])
+  }
+}
 </script>
 
 <style scoped>
-    
-    .auth_btn {
-        margin: 0 60px;
-        border: none;
-        background: none;
-        font-size: 20px;
-    }
-
-.sign_btn {
-  padding: 8.5px 20px;
+.auth_btn {
+  margin: 0 60px;
   border: none;
-  background: linear-gradient(
-    90deg,
-    rgba(66, 227, 180, 1) 0%,
-    rgba(0, 135, 205, 1) 100%
-  );
-  border-radius: 10px;
+  background: none;
   font-size: 20px;
-  color: white;
 }
+
+
+
+
 
 </style>

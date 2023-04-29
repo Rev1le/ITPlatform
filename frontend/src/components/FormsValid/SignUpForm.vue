@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         toParent() {
-
+            this.errors = [];
             console.log(this.inputFields);
             
             const singUpData = this.inputFields.map((input) => input.value);
@@ -98,7 +98,7 @@ line-height: 44px;
 input{
     margin: 5px 0;
 }
-    .form-wrap{
+.form-wrap{
     margin:auto;
     border-radius: 12px;
     padding: 15px;

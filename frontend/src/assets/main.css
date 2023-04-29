@@ -59,6 +59,7 @@ body {
   --color-bg: white;
   font-family: "SB Sans Text", sans-serif;
   --pad: 10%;
+  --hovered:#21a038;
 }
 
 button {
@@ -102,6 +103,16 @@ button {
   flex-direction: column;
   justify-content: space-between;
   /* justify-content: center; */
+}
+
+
+.sign_btn {
+  padding: 8.5px 20px;
+  border: none;
+  background: linear-gradient(90deg, rgba(66, 227, 180, 1) 0%, rgba(0, 135, 205, 1) 100%);
+  border-radius: 10px;
+  font-size: 20px;
+  color: white;
 }
 
 /* body{

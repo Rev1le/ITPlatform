@@ -1,11 +1,12 @@
 <template>
 
     <input  
-        class="input"  
+        class="input-form"  
         :type="field.type" 
         :placeholder="field.placeholder"
         :value="field.value"
         @input="submit"
+        
     />
 
 </template>

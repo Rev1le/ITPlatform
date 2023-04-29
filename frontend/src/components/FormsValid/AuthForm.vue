@@ -51,14 +51,12 @@
         },
         methods: {
             submitForm() {
-                console.log(this.InputFields);
-
+            
                 this.SignInData = {
                     email: this.InputFields[0].value,
                     password: this.InputFields[1].value
                 };
 
-                console.log(this.SignInData);
 
                 return this.$emit('submit', this.SignInData);
             },
