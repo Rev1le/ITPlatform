@@ -1,12 +1,6 @@
 <template>
-    
-    <div v-if="winWidth > 1100" >
+  
         <NavBar/>
-    </div>
-    <div v-else>
-      <!-- <button @click="SideBar">☰</button> -->
-    </div>
-
     <GlobalPage/>
     
 </template>
@@ -24,16 +18,7 @@
             GlobalPage,
         },
 
-        data() {
-            return {
-                winWidth: window.innerWidth,
-            }
-        },
-
         created() {
-            const updateWinWidth = () => this.winWidth = window.innerWidth;
-            window.addEventListener("resize", updateWinWidth);
-
             // Если пользователь уже авторизирован
             const localStorage = window.localStorage;
 

@@ -60,6 +60,8 @@ body {
   font-family: "SB Sans Text", sans-serif;
   --pad: 10%;
   --hovered:#21a038;
+  --font-size-big:calc(60px + 36 * (100vw - 320px) / 780);
+  --font-size-small:calc(35px + 29 * (100vw - 320px) / 780);
 }
 
 button {
@@ -102,6 +104,9 @@ button {
   display: flex;
   flex-direction: column;  
   justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 2400px;
  
 }
 
@@ -113,6 +118,13 @@ button {
   border-radius: 10px;
   font-size: 20px;
   color: white;
+}
+
+.auth_btn {
+  margin: 0 60px;
+  border: none;
+  background: none;
+  font-size: 20px;
 }
 
 /* body{
@@ -127,7 +139,7 @@ button {
     margin-left: 40px;
   } */
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   *,
   html,
   body {

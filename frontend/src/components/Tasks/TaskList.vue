@@ -37,10 +37,15 @@ export default {
 
 <style scoped>
 .task-list{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
+    /* display: grid;
+    grid-template-columns: repeat(3,minmax(370px, 1fr)); */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    
     gap:20px;
-    grid-auto-rows: 240px;
+    /* grid-auto-rows: 240px; */
     padding-bottom: 50px;
 }
 

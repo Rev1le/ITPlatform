@@ -17,7 +17,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: MainPage,
-    meta: { transition: 'slide-left', requiresAuth: false, viewMenu: false },
+    meta: { transition: 'slide-left', requiresAuth: false, viewMenu: true, tagline:'Работа для тех,', taglineTwo:'кто хочет',taglineBig:"Квас" },
   },
   {
     path: '/auth',
@@ -35,33 +35,33 @@ const routes = [
     path: '/vacations',
     name: 'Vacations',
     component: VacationDesk,
-    meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true  },
+    meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true, tagline:'Работа для тех,', taglineTwo:'кто хочет',taglineBig:"Шоколад"  },
   },
   {
     path: '/mentors',
     name: 'Mentors',
     component: Mentors,
-    meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true },
+    meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true, tagline:'Работа для тех,', taglineTwo:'кто хочет',taglineBig:"Рыбку" },
   },
   {
     path: '/mentor/:id',
     name: 'Mentor',
     component: MentorView,
     props: true,
-    meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true },
+    meta: { transition: 'slide-left', requiresAuth: true, viewMenu: true, tagline:'Работа для тех,', taglineTwo:'кто хочет',taglineBig:"Мяса" },
   },
   {
     path: '/tasks',
     name: 'Tasks',
     component: TasksView,
-    meta: { transition: 'slide-right', requiresAuth: true, viewMenu: true },
+    meta: { transition: 'slide-right', requiresAuth: true, viewMenu: true, tagline:'Работа для тех,', taglineTwo:'кто хочет',taglineBig:"Знаний" },
   },
   {
     path: '/vacancy/:id',
     name: 'Vacancy',
     props: true,
     component: VacancyView,
-    meta: { transition: 'slide-right', requiresAuth: true, viewMenu: true },
+    meta: { transition: 'slide-right', requiresAuth: true, viewMenu: true, tagline:'Работа для тех,', taglineTwo:'кто хочет',taglineBig:"Большего" },
   }
 ];
 

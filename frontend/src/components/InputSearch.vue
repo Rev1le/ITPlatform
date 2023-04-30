@@ -27,7 +27,6 @@ input{
     border-bottom: 2px solid gray;
     outline: none;
     border-radius: 10px 10px 0 0;
-    width: 20%;
     font-size: 17px;
 }
 .search{

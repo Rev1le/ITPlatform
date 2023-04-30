@@ -39,10 +39,13 @@ export default {
 </script>
 
 <style scoped>
+
+
 .task-fot {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 button {
   background: white;
@@ -55,6 +58,10 @@ button {
 }
 .task {
   padding: 20px;
+  min-width: 370px;
+  min-height: 240px;
+  width: 30%;
+  max-width: 500px;
   background: #42e3b4;
   border-radius: 10px;
   display: flex;
@@ -82,4 +89,18 @@ button {
     visibility: visible;
   color: white;
 }
+
+@media (max-width: 330px) {
+  .task{
+    min-width: 310px;
+  }
+}
+
+@media (min-width: 2400px) {
+  .task{
+    min-width: 510px;
+    font-size: 25px;
+  }
+}
+
 </style>

@@ -1,11 +1,10 @@
 <template>
     <div class="main_page">
-        <div class="main_page_text">
+        <!-- <div class="main_page_text">
             <span class="main_page_title_text">Платформа<br>для любых ваших</span>
             <span class="main_page_title_more_text">целей</span>
-        </div>
-        <img class="bigdiv_img_left" src="@/assets/ribbon-left-1.f923d43c.webp">
-        <img class="bigdiv_img_right" src="@/assets/ribbon-right-1.ec8abaca.webp">
+        </div> -->
+       
         <div class="description_div">
             <span class="desription_text">Сегодня Сбер - это </span>
         </div>
@@ -17,24 +16,7 @@
 </script>
 
 <style scoped>
-.bigdiv_img_left {
-    width: 200px;
-    height: 800px;
-    position:absolute;
-    left:0%;
-    top:0%;
-    margin-left:-10px;
-    margin-top:-10px;
-}
-.bigdiv_img_right {
-    width: 200px;
-    height: 800px;
-    position:absolute;
-    right:0%;
-    top:-5%;
-    margin-left:-10px;
-    margin-top:-10px;
-}
+
 .main_page_text {
   padding: 0 var(--pad);
   margin-top:50px;

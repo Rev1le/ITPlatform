@@ -14,7 +14,7 @@
 </template>
 
 <script>
-export default {    
+export default {
   emits: ['update:show'],
   props: {
     menu: Array,
@@ -26,8 +26,8 @@ export default {
       this.$emit('update:show', !this.show)
     },
     showMenuClick() {
-      this.$emit('update:show', true);
-    },
+      this.$emit('update:show', true)
+    }
   }
 }
 </script>
@@ -36,7 +36,8 @@ export default {
 .profile-menu {
   position: relative;
   display: flex;
-  justify-content: right;
+  justify-content: center;
+  padding: 10px;
 }
 .profile-menu__wrap {
   display: flex;
@@ -45,6 +46,7 @@ export default {
   border-radius: 5px;
   background-color: white;
   position: absolute;
+  
   top: 100%;
   width: 100%;
   min-width: 150px;
@@ -60,6 +62,7 @@ export default {
   padding: 10px 20px;
   text-decoration: none;
   color: inherit;
+  text-align: center;
   transition: all 0.05s ease-in;
 }
 
@@ -67,10 +70,11 @@ export default {
   text-decoration: none;
   color: inherit;
 }
-
-.profile-menu__item:hover {
-  background-color: var(--hovered);
-  color: white;
+@media (hover: hover) {
+  .profile-menu__item:hover {
+    background: linear-gradient(90deg, rgba(66, 227, 180, 1) 0%, rgba(0, 135, 205, 1) 100%);
+    color: white;
+  }
 }
 
 .profile-menu-enter-active,
@@ -80,6 +84,6 @@ export default {
 .profile-menu-enter-from,
 .profile-menu-leave-to {
   opacity: 0;
-  transform: translateY(30px) scale(0.9);
+  transform: translateY(-30px) scaleY(0.8);
 }
 </style>

@@ -35,7 +35,7 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        gap: 2%;
+        gap: 5px;
     }
     .nav_btn, .nav_btn_vac {
         background: #EAEFF7;

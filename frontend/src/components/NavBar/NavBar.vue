@@ -2,50 +2,51 @@
     <div class="nav">     
         
         <div class="Navbar-vue">          
-            <button @click="$router.push('/')" class="nav_bar_logo">
-                <img src="@/assets/sbertest.svg" alt="" />
-            </button>
-            
-            <div class="navbar_btns">
-                <NavBarButtons :user="{ name: 'Рома', auth: true }"/>
+          <router-link to="/" class="nav_bar_logo">
+            <img src="@/assets/sbertest.svg" alt="" />
+          </router-link>
+
+            <div v-if="width>=1100" class="navbar_btns">
+                <NavBarButtons/>
+            </div>
+            <div v-else class="navbar_btns navbar_btns_side">
+              <button @click="showSideBar">&#9776;</button>
             </div>
         </div>
+        <SideBar v-model:show="sideBarShow" ></SideBar>
     </div>
 </template>
 
 <script>
 import NavBarButtons from "./NavBarButtons.vue";
+import SideBar from './SideBar.vue'
 export default {
   components: {
     NavBarButtons,
+    SideBar,
   },
   data() {
     return {
-      width: 0,
+      width: window.innerWidth,
       auth: true,
+      sideBarShow:false,
     };
   },
   methods: {
     updateWidth() {
       this.width = window.innerWidth;
     },
-    SideBar() {
-      // console.log("sss");
-      this.$emit("showSideBar", true);
-      },
-      ImgButton() {
-          console.log("ЛОГО")
-      }
+    showSideBar(){
+      console.log("kekekek")
+      this.sideBarShow = true;
+    },
+  
   },
   created() {
     window.addEventListener("resize", this.updateWidth);
-    this.updateWidth();
+  
   },
-//   computed: {
-//     ...mapGetters({
-//       getName: "userStore/getName",
-//     }),
-//   },
+
 };
 </script>
 
@@ -92,7 +93,7 @@ background-image: linear-gradient(to top right,  #0188CE, #43E3B5);
   margin-left: auto;
 }
 .navbar_btns_side button {
-  font-size: 20px;
+  font-size: 25px;
 }
 
 .Navbar-vue {
