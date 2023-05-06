@@ -1,7 +1,7 @@
 /*
 CREATED BY: Rev1le <r.nikiy@yandex.ru>
 CREATED ON: 27.04.2023
-SECRIPTION: Queryt gets all mentors with data from the user table and skills from the skill table
+SECRIPTION: Query gets all mentors with data from the user table and skills from the skill table
 */
 SELECT 
 	user.name, 
