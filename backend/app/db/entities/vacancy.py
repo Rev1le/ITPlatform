@@ -3,12 +3,16 @@ from sqlalchemy import Table, Column, String, Integer, Float, Text, ForeignKey
 
 from . import metadata
 
+
 class Vacancy(BaseModel):
+    uuid: str
     name: str
     description: str
-    salary: str
+    salary: str | None
     company: str
     author_uuid: str
+    skills: list[str]
+
 
 vacancies_table = Table(
     'vacancy',

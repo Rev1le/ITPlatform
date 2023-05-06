@@ -33,7 +33,7 @@ async def get_all_mentors(logger: GetLogger) -> list[MentorUser]:
 
 
 @router.post("/")
-async def create(user: AuthUser, mentor_data: MentorData, logger: GetLogger) -> str:
+async def create(logger: GetLogger, user: AuthUser, mentor_data: MentorData) -> str:
     mentor = entities.Mentor(
         uuid=user.uuid,
         salary=mentor_data.salary,

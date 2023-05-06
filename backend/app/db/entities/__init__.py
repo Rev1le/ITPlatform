@@ -11,3 +11,4 @@ from .job_applicant_skill import *
 from .mentor import *
 from .mentor_skill import *
 from .vacancy import *
+from .vacancy_skill import *
