@@ -26,7 +26,7 @@ async def check_auth_user_token(
 
     user = await get_user_by_auth_token(token)
 
-    loger.log(f"Result user token => {user}")
+    loger.log(f"\nResult user token => {user}\n")
 
     if user is None:
         raise HTTPException(
