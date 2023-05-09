@@ -4,7 +4,7 @@ from app.db import entities, database
 
 async def get_all_vacancies() -> list[entities.Vacancy]:
 
-    with open("./app/db/queries/get_all_vacancies.sql") as f:
+    with open("./app/db/queries/sql_queries/get_all_vacancies.sql") as f:
         query = f.read()
     print(query)
 
