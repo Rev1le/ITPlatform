@@ -1,7 +1,6 @@
 from .metadata import metadata
 
 # Entities
-from .employer import *
 from .auth_token import *
 from .skill import *
 from .job_applicant import *

@@ -4,7 +4,7 @@ from fastapi import Depends, HTTPException
 from fastapi.security import APIKeyHeader
 
 from app import db
-from app.db.queries.get_user_by_auth_token_async import get_user_by_auth_token
+from app.db.queries.get.get_user_by_auth_token_async import get_user_by_auth_token
 from app.logger import Logger
 
 

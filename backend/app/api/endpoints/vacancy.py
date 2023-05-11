@@ -1,20 +1,15 @@
-import secrets
 import uuid
-from typing import Annotated
-from uuid import UUID, uuid4
+from uuid import UUID
 
-import sqlalchemy
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter
 from pydantic import BaseModel
 
 from app.api.deps import AuthUser
-from app.db import Skill, database, vacancy_skills_table, vacancies_table, entities
+from app.db import entities
 from app.db.entities import Vacancy
-from app.db.queries.create_many_skills_async import create_many_skills
-from app.db.queries.create_vacancy_async import create_vacancy as db_create_vacancy
-from app.db.queries.get_all_vacancies_async import get_all_vacancies as db_get_all_vacancies
-from app.db.queries.get_vacancy_by_uuid_async import get_vacancy_by_uuid_async
-from app.db.entities import skills_table
+from app.db.queries.create.create_vacancy_async import create_vacancy as db_create_vacancy
+from app.db.queries.get.get_all_vacancies_async import get_all_vacancies as db_get_all_vacancies
+from app.db.queries.get.get_vacancy_by_uuid_async import get_vacancy_by_uuid_async
 
 
 class VacancyData(BaseModel):

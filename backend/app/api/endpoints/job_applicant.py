@@ -6,9 +6,9 @@ from pydantic import BaseModel
 
 from app.api.deps import AuthUser
 from app import db
-from app.db.queries.create_job_applicant_async import create_job_applicant
-from app.db.queries.create_many_skills_async import create_many_skills
-from app.db.queries.create_many_job_applicant_skill_async import create_many_job_applicant_skill
+from app.db.queries.create.create_job_applicant_async import create_job_applicant
+from app.db.queries.create.create_many_skills_async import create_many_skills
+from app.db.queries.create.create_many_job_applicant_skill_async import create_many_job_applicant_skill
 
 
 class RegistrationJobApplicant(BaseModel):

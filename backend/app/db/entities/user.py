@@ -14,6 +14,14 @@ class User(BaseModel):
     photo: str | None
 
 
+class ResponseUser(BaseModel):
+    uuid: str
+    name: str
+    birthday: datetime.date
+    bio: str | None
+    photo: str | None
+
+
 users_table = Table(
     'user',
     metadata,

@@ -9,9 +9,12 @@ from pydantic import BaseModel
 
 from app.api.deps import GetLogger
 from app import db
-from app.db.queries.create_user_async import create_user
-from app.db.queries.create_auth_token_async import create_auth_token
-from app.db.queries.get_user_by_email_password_hash_async import get_user_by_email_password_hash
+from app.api.deps import AuthUser
+from app.db import entities
+from app.db.queries.create.create_user_async import create_user
+from app.db.queries.create.create_auth_token_async import create_auth_token
+from app.db.queries.get.get_user_by_uuid_async import get_user_by_uuid_async
+from app.db.queries.get.get_user_by_email_password_hash_async import get_user_by_email_password_hash
 
 
 class Registration(BaseModel):
@@ -39,7 +42,18 @@ class LoginAccess(BaseModel):
 router = APIRouter()
 
 
-@router.post("/user")
+@router.get("/me")
+async def get_user_by_token(user: AuthUser) -> entities.ResponseUser:
+    return entities.ResponseUser(**user.dict())
+
+
+@router.get("/{uuid}")
+async def get_user_by_token(user: AuthUser, uuid: str) -> entities.ResponseUser:
+    user_from_uuid = await get_user_by_uuid_async(uuid)
+    return entities.ResponseUser(**user_from_uuid.dict())
+
+
+@router.post("/reg")
 async def registration_user(registration_data: Registration, logger: GetLogger) -> RegistrationAccess:
     birthday = datetime\
         .strptime(registration_data.birthday, "%d-%m-%Y")\
@@ -75,7 +89,7 @@ async def registration_user(registration_data: Registration, logger: GetLogger) 
     )
 
 
-@router.post("/")
+@router.post("/auth")
 async def auth_user(auth_data: AuthData) -> LoginAccess:
 
     print(auth_data)
